@@ -190,6 +190,11 @@
       border-color: var(--ink);
     }
 
+    .button .button-muted {
+      color: var(--soft);
+      font-weight: 600;
+    }
+
     .button[aria-disabled="true"] {
       color: var(--soft);
       cursor: default;
@@ -297,6 +302,27 @@
       font-size: 15px;
     }
 
+    .objective-comparison {
+      margin-top: 26px;
+    }
+
+    .comparison-title {
+      margin: 0 0 12px;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .objective-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
     .formula {
       margin: 22px 0 0;
       padding: 18px;
@@ -317,6 +343,10 @@
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
       font-size: 14px;
       white-space: pre;
+    }
+
+    .inline-math {
+      white-space: nowrap;
     }
 
     .formula-note {
@@ -556,6 +586,28 @@
       text-align: left;
     }
 
+    .reference-list {
+      max-width: 920px;
+      margin: 0;
+      padding-left: 22px;
+      color: #262626;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .reference-list li + li {
+      margin-top: 12px;
+    }
+
+    .reference-title {
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .reference-meta {
+      color: var(--muted);
+    }
+
     .footer {
       max-width: var(--max);
       margin: 0 auto;
@@ -672,7 +724,7 @@
 <body>
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="brand">RVM for Video Diffusion RL</div>
+      <div class="brand">RVM for Diffusion RL</div>
       <nav aria-label="Page navigation">
         <a href="#abstract">Abstract</a>
         <a href="#method">Method</a>
@@ -688,11 +740,12 @@
     <h1>Scaling Reinforcement Learning for Diffusion Models via Velocity Matching</h1>
     <p class="authors">
       <strong>Jaemoo Choi</strong><sup>1</sup>,
-      <strong>XXX</strong><sup>1</sup>,
-      <strong>YYY</strong><sup>1</sup>,
-      <strong>ZZZ</strong><sup>2</sup>,
+      <strong>Wei Guo</strong><sup>1</sup>,
+      <strong>Yuchen Zhu</strong><sup>1</sup>,
+      <strong>Arash Vahdat</strong><sup>2</sup>,
+      <strong>Molei Tao</strong><sup>1</sup>,
       <strong>Julius Berner</strong><sup>2</sup>,
-      <strong>Yongxin Chen</strong><sup>1</sup>
+      <strong>Yongxin Chen</strong><sup>1,2</sup>
     </p>
     <div class="logo-strip" aria-label="Affiliated institutions">
       <span class="logo-item">
@@ -707,7 +760,7 @@
     <div class="hero-actions">
       <a class="button primary" href="#teasers">View video comparisons</a>
       <a class="button" href="">Paper</a>
-      <a class="button" href="">Code</a>
+      <a class="button" href="">Code&nbsp;<span class="button-muted">(coming soon)</span></a>
       <a class="button" href="#citation">BibTeX</a>
     </div>
     <div class="hero-video-band" id="hero-videos" aria-label="Representative generated videos">
@@ -753,6 +806,26 @@
       <p class="formula-note" id="rvm-loss-note" aria-label="RVM loss notation">
         Here x_t = (1 - t) x_0 + t epsilon with epsilon sampled from a standard Gaussian, and v_target = epsilon - x_0.
       </p>
+      <div class="objective-comparison" aria-label="Comparison with existing velocity objectives">
+        <h3 class="comparison-title">Relation to Existing Velocity Objectives</h3>
+        <div class="method-grid">
+          <div class="method-card">
+            <span class="objective-tag">Gradient-level match</span>
+            <h3>RAM</h3>
+            <p>RAM shapes a detached reward target. With the frozen reference as anchor and unit anchor strength, its velocity-field update matches RVM.</p>
+          </div>
+          <div class="method-card">
+            <span class="objective-tag">EMA-anchored branches</span>
+            <h3>DiffusionNFT</h3>
+            <p>DiffusionNFT contrasts positive and negative EMA-anchored branches. Its objective is an EMA-anchored RVM up to constants, with signed reward weight <span class="inline-math" data-katex="2r_{\mathrm{nft}}-1">2r_nft - 1</span>.</p>
+          </div>
+          <div class="method-card">
+            <span class="objective-tag">Explicit reward plus anchor</span>
+            <h3>RVM</h3>
+            <p>RVM writes the shared structure directly: reward weighting chooses the preferred sample direction, while the anchor controls model drift.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -763,7 +836,7 @@
         <p class="lede">Representative VBench-T2V metrics from the appendix table.</p>
       </div>
       <figure class="radar-figure">
-        <img src="figures/vbench_t2v_radar.png" alt="Radar plot comparing VBench-T2V metrics across methods">
+        <img src="figures/vbench_t2v_radar_wide.png" alt="Radar plot comparing VBench-T2V metrics across methods">
         <figcaption class="radar-caption">RVM improves the selected VBench-T2V metrics while retaining strong visual quality and temporal consistency.</figcaption>
       </figure>
     </div>
@@ -823,9 +896,25 @@
     </div>
   </section>
 
-  <footer class="footer">
-    Project page made with the help of GPT-5.5.
-  </footer>
+  <section class="section" id="references">
+    <div class="section-inner">
+      <div class="section-head">
+        <h2>References</h2>
+      </div>
+      <ol class="reference-list">
+        <li>
+          <span class="reference-title">Reinforce Adjoint Matching: Scaling RL Post-Training of Diffusion and Flow-Matching Models.</span>
+          <span class="reference-meta"> Andreas Bergmeister, Stefanie Jegelka, Nikolas N&uuml;sken, Carles Domingo-Enrich, and Jakiw Pidstrigach. arXiv:2605.10759, 2026.</span>
+          <a href="https://arxiv.org/abs/2605.10759" target="_blank" rel="noopener">arXiv</a>
+        </li>
+        <li>
+          <span class="reference-title">DiffusionNFT: Online Diffusion Reinforcement with Forward Process.</span>
+          <span class="reference-meta"> Kaiwen Zheng, Huayu Chen, Haotian Ye, Haoxiang Wang, Qinsheng Zhang, Kai Jiang, Hang Su, Stefano Ermon, Jun Zhu, and Ming-Yu Liu. International Conference on Learning Representations (ICLR), 2026.</span>
+          <a href="https://openreview.net/forum?id=VJZ477R89F" target="_blank" rel="noopener">OpenReview</a>
+        </li>
+      </ol>
+    </div>
+  </section>
 
   <script>
     const DATASETS = {
@@ -883,7 +972,7 @@
 
     const RVM_NOTE_TEX = String.raw`\text{Here } \mathbf{x}_t=(1-t)\mathbf{x}_0+t\boldsymbol{\epsilon},\quad \boldsymbol{\epsilon}\sim\mathcal{N}(\mathbf{0},\mathbf{I}),\quad t\sim\mathcal{U}(0,1),\quad \text{and } \mathbf{v}_{\mathrm{target}}=\boldsymbol{\epsilon}-\mathbf{x}_0.`;
 
-    function renderLossFormula(retries = 0) {
+    function renderKatex(retries = 0) {
       const node = document.getElementById("rvm-loss");
       if (!node) return;
       if (window.katex) {
@@ -898,10 +987,16 @@
             throwOnError: false
           });
         }
+        document.querySelectorAll("[data-katex]").forEach((mathNode) => {
+          window.katex.render(mathNode.dataset.katex, mathNode, {
+            displayMode: false,
+            throwOnError: false
+          });
+        });
         return;
       }
       if (retries < 80) {
-        window.setTimeout(() => renderLossFormula(retries + 1), 100);
+        window.setTimeout(() => renderKatex(retries + 1), 100);
       }
     }
 
@@ -1101,7 +1196,7 @@
     }
 
     init();
-    renderLossFormula();
+    renderKatex();
   </script>
 </body>
 </html>

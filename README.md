@@ -15,23 +15,25 @@ is explicitly configured with private access control.
 
 Current placeholders:
 
-- Author order still has `XXX`, `YYY`, and `ZZZ`.
-- `Paper` and `Code` buttons intentionally have empty links for now.
+- Author list follows the current manuscript draft.
+- `Paper` and `Code` buttons intentionally have empty links for now; the Code
+  button is labeled `Code (coming soon)`.
 - BibTeX is still `TBA`.
 
-The loss formula uses KaTeX from a CDN. If the CDN is unavailable, the page keeps
-a plain-text fallback formula.
+Math on the page should be rendered with KaTeX. Inline math can use the
+`data-katex` attribute in `index.html`; if the CDN is unavailable, the main loss
+formula keeps a plain-text fallback.
 
 ## Radar Plot
 
-The displayed radar plot is `figures/vbench_t2v_radar.png`. Treat this file as
+The displayed radar plot is `figures/vbench_t2v_radar_wide.png`. Treat this file as
 the canonical web asset inside this project-page repository.
 
 If the paper repository regenerates the radar plot, replace this web asset with
-the new PNG output:
+the latest wide PNG output:
 
 ```bash
-cp /path/to/paper_repo/radar_plot/vbench_t2v_radar.png figures/vbench_t2v_radar.png
+cp /path/to/paper_repo/radar_plot/vbench_t2v_radar_wide.png figures/vbench_t2v_radar_wide.png
 ```
 
 The source CSV and plotting script live in the paper repository, not necessarily
