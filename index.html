@@ -248,10 +248,6 @@
     }
 
     .section-head {
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
-      gap: 34px;
-      align-items: start;
       margin-bottom: 24px;
     }
 
@@ -306,70 +302,100 @@
       margin-top: 26px;
     }
 
+    .objective-card {
+      border-top-width: 3px;
+      padding-top: 16px;
+    }
+
+    .objective-card h3 {
+      font-size: 18px;
+    }
+
+    .objective-card.ram {
+      background: #f1f5fb;
+      border-color: #b9cbe2;
+    }
+
+    .objective-card.ram h3 {
+      color: var(--blue);
+    }
+
+    .objective-card.nft {
+      background: #fbf6ea;
+      border-color: #dfccaa;
+    }
+
+    .objective-card.nft h3 {
+      color: var(--gold);
+    }
+
+    .objective-card.rvm {
+      background: #fff1f0;
+      border-color: #e8bbb8;
+    }
+
+    .objective-card.rvm h3 {
+      color: var(--red);
+    }
+
     .comparison-title {
       margin: 0 0 12px;
-      font-size: 17px;
+      font-size: 21px;
       font-weight: 700;
       text-align: center;
     }
 
-    .objective-tag {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: var(--blue);
-      font-size: 12px;
-      font-weight: 750;
-      letter-spacing: 0;
-      text-transform: uppercase;
+    .objective-ref {
+      color: inherit;
+      font-size: 0.84em;
+      font-weight: 650;
+      text-decoration: none;
     }
 
-    .formula {
-      margin: 22px 0 0;
-      padding: 18px;
-      background: #111;
-      color: white;
-      border-radius: var(--radius);
-      overflow-x: auto;
-      font-size: 16px;
-      line-height: 1.7;
+    .objective-ref:hover {
+      text-decoration: underline;
     }
 
-    .formula .katex-display {
-      margin: 0;
+    .paper-figure {
+      margin: 0 auto;
     }
 
-    .formula .formula-fallback {
-      margin: 0;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 14px;
-      white-space: pre;
+    .paper-figure.method-figure {
+      max-width: 880px;
+      margin-bottom: 38px;
+    }
+
+    .paper-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .inline-math {
       white-space: nowrap;
     }
 
-    .formula-note {
-      max-width: 1040px;
-      margin: 12px auto 0;
-      color: var(--muted);
-      font-size: 16px;
-      text-align: center;
-    }
-
-    .radar-figure {
-      max-width: 680px;
+    .results-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      gap: 32px;
+      align-items: center;
+      max-width: 1120px;
       margin: 0 auto;
     }
 
-    .radar-figure img {
+    .results-grid figure {
+      margin: 0;
+    }
+
+    .results-grid img {
       display: block;
       width: 100%;
       height: auto;
       border-radius: var(--radius);
     }
 
-    .radar-caption {
+    .figure-caption {
       display: block;
       min-height: 0;
       margin: 12px auto 0;
@@ -395,7 +421,7 @@
 
     .sample-head {
       display: flex;
-      align-items: flex-start;
+      align-items: baseline;
       gap: 12px;
       margin-bottom: 12px;
     }
@@ -634,11 +660,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .section-head {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
       .video-grid.cols-3 {
         grid-template-columns: 1fr;
       }
@@ -654,6 +675,23 @@
 
       .citation-copy {
         margin-left: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .result-figure {
+        width: min(100%, 520px);
+        margin: 0 auto;
+      }
+
+      .radar-figure {
+        width: min(100%, 680px);
+        margin: 0 auto;
       }
     }
 
@@ -772,7 +810,6 @@
     <div class="section-inner">
       <div class="section-head">
         <h2>Abstract</h2>
-        <p class="lede">RVM fine-tunes video diffusion by rewarding the learned velocity field directly, without denoising-trajectory policy gradients.</p>
       </div>
       <p class="abstract">
         We study reward fine-tuning for large-scale diffusion and flow models through a velocity-matching perspective. Instead of estimating policy ratios along denoising trajectories, <strong>reward-based velocity matching (RVM)</strong> applies reward feedback directly to the learned velocity field. The resulting objective combines a reward-weighted regression term with an anchor term that controls model drift. This view connects several recent velocity-based objectives while keeping training simple, trajectory-independent, and practical for video generation.
@@ -784,44 +821,37 @@
     <div class="section-inner">
       <div class="section-head">
         <h2>Method Overview</h2>
-        <p class="lede">RVM replaces trajectory-level RL machinery with reward-weighted velocity matching plus a lightweight anchor.</p>
       </div>
+      <figure class="paper-figure method-figure">
+        <img src="figures/teaser_left.png" alt="RVM method overview from the paper">
+      </figure>
       <div class="method-grid">
         <div class="method-card">
           <h3>Trajectory-independent update</h3>
-          <p>The loss is evaluated from generated samples and noisy states, without storing or scoring full denoising rollouts.</p>
+          <p>The loss is evaluated from generated samples <span class="inline-math" data-katex="\bm{x}_0^{1:G}\sim\pi_{\mathrm{old}}">x_0^(1:G) ~ pi_old</span> and noisy states <span class="inline-math" data-katex="\bm{x}_t^i\mid\bm{x}_0^i\sim\mathcal{N}((1-t)\bm{x}_0^i,t^2\bm{I})">x_t^i | x_0^i ~ N((1-t)x_0^i, t^2 I)</span>, without storing or scoring full denoising rollouts <span class="inline-math" data-katex="\bm{x}_{0:1}">x_(0:1)</span>.</p>
         </div>
         <div class="method-card">
           <h3>Reward-weighted velocity target</h3>
-          <p>High-reward samples receive stronger velocity-matching signal, nudging the field toward reward-aligned generations.</p>
+          <p>The signed reward <span class="inline-math" data-katex="r_{\mathrm{rvm}}^i">r_rvm^i</span> attracts <span class="inline-math" data-katex="\bm{v}_\theta(\bm{x}_t^i,t)">v_theta(x_t^i,t)</span> toward the sample velocity <span class="inline-math" data-katex="\bm{v}^i=\bm{\epsilon}^i-\bm{x}_0^i">v^i = epsilon^i - x_0^i</span> for desirable samples and repels it from undesirable directions.</p>
         </div>
         <div class="method-card">
           <h3>Anchor-controlled drift</h3>
-          <p>A detached anchor velocity regularizes the update and recovers related velocity-based objectives under specific choices.</p>
+          <p>A detached anchor velocity <span class="inline-math" data-katex="\bm{v}_{\mathrm{anc}}(\bm{x}_t^i,t)">v_anc(x_t^i,t)</span> regularizes the update and recovers related velocity-based objectives under specific choices.</p>
         </div>
       </div>
-      <div class="formula" id="rvm-loss" aria-label="RVM loss">
-        <pre class="formula-fallback">L_RVM(theta) = E[ r(x_0) || v_theta(x_t,t) - v_target ||^2 + beta || v_theta(x_t,t) - v_anchor(x_t,t) ||^2 ]</pre>
-      </div>
-      <p class="formula-note" id="rvm-loss-note" aria-label="RVM loss notation">
-        Here x_t = (1 - t) x_0 + t epsilon with epsilon sampled from a standard Gaussian, and v_target = epsilon - x_0.
-      </p>
       <div class="objective-comparison" aria-label="Comparison with existing velocity objectives">
         <h3 class="comparison-title">Relation to Existing Velocity Objectives</h3>
         <div class="method-grid">
-          <div class="method-card">
-            <span class="objective-tag">Gradient-level match</span>
-            <h3>RAM</h3>
+          <div class="method-card objective-card ram">
+            <h3>RAM <a class="objective-ref" href="#ref-ram">[1]</a></h3>
             <p>RAM shapes a detached reward target. With the frozen reference as anchor and unit anchor strength, its velocity-field update matches RVM.</p>
           </div>
-          <div class="method-card">
-            <span class="objective-tag">EMA-anchored branches</span>
-            <h3>DiffusionNFT</h3>
+          <div class="method-card objective-card nft">
+            <h3>DiffusionNFT <a class="objective-ref" href="#ref-nft">[2]</a></h3>
             <p>DiffusionNFT contrasts positive and negative EMA-anchored branches. Its objective is an EMA-anchored RVM up to constants, with signed reward weight <span class="inline-math" data-katex="2r_{\mathrm{nft}}-1">2r_nft - 1</span>.</p>
           </div>
-          <div class="method-card">
-            <span class="objective-tag">Explicit reward plus anchor</span>
-            <h3>RVM</h3>
+          <div class="method-card objective-card rvm">
+            <h3>RVM (ours)</h3>
             <p>RVM writes the shared structure directly: reward weighting chooses the preferred sample direction, while the anchor controls model drift.</p>
           </div>
         </div>
@@ -833,12 +863,17 @@
     <div class="section-inner">
       <div class="section-head">
         <h2>Quantitative Snapshot</h2>
-        <p class="lede">Representative VBench-T2V metrics from the appendix table.</p>
       </div>
-      <figure class="radar-figure">
-        <img src="figures/vbench_t2v_radar_wide.png" alt="Radar plot comparing VBench-T2V metrics across methods">
-        <figcaption class="radar-caption">RVM improves the selected VBench-T2V metrics while retaining strong visual quality and temporal consistency.</figcaption>
-      </figure>
+      <div class="results-grid">
+        <figure class="result-figure">
+          <img src="figures/teaser_right.png" alt="VBench Overall score versus training cost across methods">
+          <figcaption class="figure-caption">VBench Overall versus training cost on Wan2.1-T2V-1.3B.</figcaption>
+        </figure>
+        <figure class="radar-figure">
+          <img src="figures/vbench_t2v_radar_wide.png" alt="Radar plot comparing VBench-T2V metrics across methods">
+          <figcaption class="figure-caption">RVM improves the selected VBench-T2V metrics while retaining strong visual quality and temporal consistency.</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -846,7 +881,6 @@
     <div class="section-inner">
       <div class="section-head">
         <h2>Representative Comparisons</h2>
-        <p class="lede">A compact set of side-by-side examples from the available Wan2.1-T2V and SkyReels-I2V outputs.</p>
       </div>
       <div class="teaser-grid" id="teaser-grid">
         <div class="load-state">Loading comparisons...</div>
@@ -862,11 +896,11 @@
       <div class="sampling-notes">
         <details class="sampling-details" data-dataset="wan21">
           <summary>Wan2.1-T2V sampling details</summary>
-          <p>Text-to-video. 53 frames, 480x832, 16-step DPM-2 ODE, VBench-official suite. The headline is the short VBench suite prompt (what the file is named after); expand "extended prompt" for the self_forcing_extended caption the model was actually conditioned on.</p>
+          <p>Text-to-video. 53 frames, 480x832, 16-step DPM-2 ODE, VBench-official suite. The headline is the short VBench suite prompt; expand "extended prompt" for the self_forcing_extended caption the model was actually conditioned on.</p>
         </details>
         <details class="sampling-details" data-dataset="skyreels" hidden>
           <summary>SkyReels-I2V sampling details</summary>
-          <p>Image-to-video. 53 frames, 400x640, 16-step ODE, cfg=1.0, VBench-I2V (vbench_i2v_a14b). The headline IS the prompt the model was conditioned on -- these runs used the original short prompts. The expandable rewrite comes from a separate eval_a14b_extended run and was NOT used for these clips. No CFG=5 baseline was collected for this model.</p>
+          <p>Image-to-video. 53 frames, 400x640, 16-step ODE, cfg=1.0, VBench-I2V (vbench_i2v_a14b). The headline is the prompt the model was conditioned on, i.e., these runs used the original short prompts. The expandable rewrite comes from a separate eval_a14b_extended run and was not used for these clips. No CFG=5 baseline was collected for this model.</p>
         </details>
       </div>
       <div class="gallery-tools">
@@ -888,10 +922,11 @@
         <h2>Citation</h2>
       </div>
       <p class="citation-copy">If you find our work useful, please consider citing it as follows.</p>
-      <pre class="cite-box">@article{choi2026rvm,
-  title  = {TBA},
-  author = {TBA},
-  year   = {TBA}
+      <pre class="cite-box">@article{choi2026scaling,
+  title={Scaling Reinforcement Learning for Diffusion Models via Velocity Matching},
+  author={Choi, Jaemoo and Guo, Wei and Zhu, Yuchen and Vahdat, Arash and Tao, Molei and Berner, Julius and Chen, Yongxin},
+  journal={arXiv preprint arXiv:TBA},
+  year={2026}
 }</pre>
     </div>
   </section>
@@ -902,12 +937,12 @@
         <h2>References</h2>
       </div>
       <ol class="reference-list">
-        <li>
+        <li id="ref-ram">
           <span class="reference-title">Reinforce Adjoint Matching: Scaling RL Post-Training of Diffusion and Flow-Matching Models.</span>
           <span class="reference-meta"> Andreas Bergmeister, Stefanie Jegelka, Nikolas N&uuml;sken, Carles Domingo-Enrich, and Jakiw Pidstrigach. arXiv:2605.10759, 2026.</span>
           <a href="https://arxiv.org/abs/2605.10759" target="_blank" rel="noopener">arXiv</a>
         </li>
-        <li>
+        <li id="ref-nft">
           <span class="reference-title">DiffusionNFT: Online Diffusion Reinforcement with Forward Process.</span>
           <span class="reference-meta"> Kaiwen Zheng, Huayu Chen, Haotian Ye, Haoxiang Wang, Qinsheng Zhang, Kai Jiang, Hang Su, Stefano Ermon, Jun Zhu, and Ming-Yu Liu. International Conference on Learning Representations (ICLR), 2026.</span>
           <a href="https://openreview.net/forum?id=VJZ477R89F" target="_blank" rel="noopener">OpenReview</a>
@@ -968,25 +1003,8 @@
       "'": "&#39;"
     }[ch]));
 
-    const RVM_LOSS_TEX = String.raw`\mathcal{L}_{\mathrm{RVM}}(\theta)=\mathbb{E}\left[r(\mathbf{x}_0)\,\lVert \mathbf{v}_{\theta}(\mathbf{x}_t,t)-\mathbf{v}_{\mathrm{target}}\rVert_2^2+\beta\,\lVert \mathbf{v}_{\theta}(\mathbf{x}_t,t)-\mathbf{v}_{\mathrm{anchor}}(\mathbf{x}_t,t)\rVert_2^2\right]`;
-
-    const RVM_NOTE_TEX = String.raw`\text{Here } \mathbf{x}_t=(1-t)\mathbf{x}_0+t\boldsymbol{\epsilon},\quad \boldsymbol{\epsilon}\sim\mathcal{N}(\mathbf{0},\mathbf{I}),\quad t\sim\mathcal{U}(0,1),\quad \text{and } \mathbf{v}_{\mathrm{target}}=\boldsymbol{\epsilon}-\mathbf{x}_0.`;
-
     function renderKatex(retries = 0) {
-      const node = document.getElementById("rvm-loss");
-      if (!node) return;
       if (window.katex) {
-        window.katex.render(RVM_LOSS_TEX, node, {
-          displayMode: true,
-          throwOnError: false
-        });
-        const note = document.getElementById("rvm-loss-note");
-        if (note) {
-          window.katex.render(RVM_NOTE_TEX, note, {
-            displayMode: false,
-            throwOnError: false
-          });
-        }
         document.querySelectorAll("[data-katex]").forEach((mathNode) => {
           window.katex.render(mathNode.dataset.katex, mathNode, {
             displayMode: false,
@@ -1043,10 +1061,11 @@
       const details = detailText(datasetKey, item);
       const methods = cfg.methods;
       const cols = methods.length === 2 ? "cols-2" : "cols-3";
+      const sampleLabel = escapeHtml(cfg.title);
       return `
         <article class="sample" data-search="${escapeHtml((promptText(datasetKey, item) + " " + details).toLowerCase())}">
           <div class="sample-head">
-            <div class="sample-id">${escapeHtml(cfg.title)}<br>${escapeHtml(item.id)}</div>
+            <div class="sample-id">${sampleLabel}</div>
             <div class="prompt">
               ${escapeHtml(promptText(datasetKey, item))}
               ${compact || !details ? "" : `
