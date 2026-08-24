@@ -235,8 +235,9 @@
       object-fit: cover;
     }
 
-    .hero-clip span {
+    .hero-label {
       position: absolute;
+      z-index: 4;
       left: 8px;
       bottom: 8px;
       max-width: calc(100% - 16px);
@@ -246,6 +247,46 @@
       color: #111;
       font-size: 12px;
       font-weight: 650;
+      transition: opacity 160ms ease;
+    }
+
+    .hero-prompt {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: flex-end;
+      margin: 0;
+      padding: 80px 16px 14px;
+      overflow-y: auto;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 10%, rgba(0, 0, 0, 0.9) 100%);
+      color: white;
+      font-size: clamp(12px, 1.05vw, 15px);
+      font-weight: 650;
+      line-height: 1.45;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 180ms ease, transform 180ms ease;
+      pointer-events: none;
+    }
+
+    .hero-clip:hover .hero-prompt,
+    .hero-clip:focus .hero-prompt,
+    .hero-clip:focus-within .hero-prompt {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-clip:hover .hero-label,
+    .hero-clip:focus .hero-label,
+    .hero-clip:focus-within .hero-label {
+      opacity: 0;
+    }
+
+    .hero-clip:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 2px;
     }
 
     .section {
@@ -465,20 +506,6 @@
       font-weight: 650;
     }
 
-    .replay {
-      flex: none;
-      min-height: 30px;
-      padding: 5px 10px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--bg);
-      color: var(--ink);
-      cursor: pointer;
-      font: inherit;
-      font-size: 13px;
-      font-weight: 650;
-    }
-
     .video-stage {
       position: relative;
     }
@@ -612,8 +639,7 @@
       display: none;
     }
 
-    .tab,
-    .toggle {
+    .tab {
       border: 1px solid var(--line);
       background: var(--paper);
       color: var(--ink);
@@ -626,29 +652,17 @@
       cursor: pointer;
     }
 
-    .tab[aria-pressed="true"],
-    .toggle[aria-pressed="true"] {
+    .tab[aria-pressed="true"] {
       background: var(--ink);
       border-color: var(--ink);
       color: white;
     }
 
-    .search {
-      margin-left: auto;
-      min-width: 260px;
-      min-height: 34px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 7px 11px;
-      background: var(--paper);
-      color: var(--ink);
-      font: inherit;
-      font-size: 14px;
-    }
-
     .count {
-      color: var(--soft);
-      font-size: 14px;
+      margin-left: auto;
+      color: var(--red);
+      font-size: 15px;
+      font-weight: 750;
     }
 
     .gallery-carousel {
@@ -656,6 +670,10 @@
       grid-template-columns: 46px minmax(0, 1fr) 46px;
       gap: 12px;
       align-items: center;
+    }
+
+    .gallery-list {
+      touch-action: pan-y;
     }
 
     .gallery-arrow {
@@ -749,11 +767,6 @@
 
       .video-grid.cols-3 {
         grid-template-columns: 1fr;
-      }
-
-      .search {
-        margin-left: 0;
-        width: 100%;
       }
 
       .sampling-notes {
@@ -1021,8 +1034,6 @@
       <div class="gallery-tools">
         <button class="tab" data-dataset="wan21" aria-pressed="true">Wan2.1-T2V</button>
         <button class="tab" data-dataset="skyreels" aria-pressed="false">SkyReels-I2V</button>
-        <button class="toggle" id="autoplay" aria-pressed="true">Autoplay on</button>
-        <input class="search" id="search" type="search" placeholder="Filter prompts..." autocomplete="off">
         <span class="count" id="count"></span>
       </div>
       <div class="gallery-carousel">
@@ -1084,7 +1095,7 @@
           { key: "base_w_cfg", label: "Base + CFG" },
           { key: "rvm_ours", label: "RVM (Ours)", ours: true }
         ],
-        teaserIds: ["01", "07", "14", "23"],
+        teaserIds: ["00", "14"],
         hero: [
           { id: "01", method: "rvm_ours", label: "Wan2.1-T2V / RVM" }
         ]
@@ -1100,9 +1111,9 @@
           { key: "base_wo_cfg", label: "Base" },
           { key: "epg_bump", label: "RVM (Ours)", ours: true }
         ],
-        teaserIds: ["00609", "00895", "00923", "01037"],
+        teaserIds: ["01001", "01000"],
         hero: [
-          { id: "00609", method: "epg_bump", label: "SkyReels-I2V / RVM" }
+          { id: "00885", method: "epg_bump", label: "SkyReels-I2V / RVM" }
         ]
       }
     };
@@ -1111,7 +1122,6 @@
       data: {},
       activeDataset: "wan21",
       galleryIndex: 0,
-      autoplay: true,
       observer: null
     };
 
@@ -1119,6 +1129,8 @@
     const MEDIA_READY_TIMEOUT = 15000;
     const mediaReleaseTimers = new WeakMap();
     const mediaGenerations = new WeakMap();
+    const galleryPrefetchedUrls = new Set();
+    let galleryPrefetchController = null;
 
     const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({
       "&": "&amp;",
@@ -1169,6 +1181,12 @@
     function detailText(datasetKey, item) {
       const cfg = DATASETS[datasetKey];
       return item[cfg.detailKey] || "";
+    }
+
+    function heroPrompt(datasetKey, item) {
+      return datasetKey === "wan21"
+        ? detailText(datasetKey, item) || promptText(datasetKey, item)
+        : promptText(datasetKey, item);
     }
 
     function mediaGroups(root = document) {
@@ -1231,15 +1249,15 @@
       });
     }
 
-    async function startMediaGroup(group, { forcePlay = false, rewind = true } = {}) {
+    async function startMediaGroup(group, { rewind = true } = {}) {
       if (!group?.isConnected) return;
       clearMediaRelease(group);
       const videos = mediaVideos(group);
       if (!videos.length) return;
 
       const alreadyReady = videos.every((video) => video.getAttribute("src") && video.readyState >= 3);
-      if (alreadyReady && !forcePlay) {
-        if (state.autoplay) videos.forEach(playVideo);
+      if (alreadyReady) {
+        videos.forEach(playVideo);
         setMediaState(group, "ready");
         return;
       }
@@ -1250,7 +1268,7 @@
       videos.forEach(attachVideo);
 
       // Starting muted videos makes iOS fetch actual frames instead of metadata only.
-      if (state.autoplay || forcePlay) videos.forEach(playVideo);
+      videos.forEach(playVideo);
       await Promise.all(videos.map(waitForVideo));
       if (!group.isConnected || mediaGenerations.get(group) !== generation) return;
 
@@ -1265,10 +1283,11 @@
           try { video.currentTime = 0; } catch (_) {}
         });
       }
-      if (state.autoplay || forcePlay) videos.forEach(playVideo);
+      videos.forEach(playVideo);
       window.requestAnimationFrame(() => {
         if (group.isConnected && mediaGenerations.get(group) === generation) {
           setMediaState(group, "ready");
+          if (group.closest("#gallery-list")) prefetchGalleryNeighbors();
         }
       });
     }
@@ -1280,6 +1299,7 @@
       const videos = mediaVideos(group);
       videos.forEach((video) => video.pause());
       setMediaState(group, "idle");
+      if (group.closest("#gallery-list")) cancelGalleryPrefetch();
       const release = () => {
         mediaReleaseTimers.delete(group);
         videos.forEach(detachVideo);
@@ -1321,7 +1341,7 @@
       return `
         <figure>
           <figcaption class="${cls}"><span class="dot"></span>${escapeHtml(method.label)}</figcaption>
-          <video data-src="${escapeHtml(videoSrc(datasetKey, method.key, item))}" preload="none" muted loop playsinline controls></video>
+          <video data-src="${escapeHtml(videoSrc(datasetKey, method.key, item))}" preload="none" autoplay muted loop playsinline></video>
         </figure>
       `;
     }
@@ -1345,7 +1365,6 @@
                 </details>
               `}
             </div>
-            <button class="replay" data-replay>Replay</button>
           </div>
           <div class="video-stage">
             <div class="media-status" role="status" aria-live="polite">Loading comparison...</div>
@@ -1367,9 +1386,10 @@
       ` + heroItems.map((entry) => {
         const item = getItem(entry.dataset, entry.id);
         return `
-          <div class="hero-clip">
-            <video data-src="${escapeHtml(videoSrc(entry.dataset, entry.method, item))}" preload="none" muted loop playsinline></video>
-            <span>${escapeHtml(entry.label)}</span>
+          <div class="hero-clip" tabindex="0" aria-label="${escapeHtml(heroPrompt(entry.dataset, item))}">
+            <video data-src="${escapeHtml(videoSrc(entry.dataset, entry.method, item))}" preload="none" autoplay muted loop playsinline></video>
+            <span class="hero-label">${escapeHtml(entry.label)}</span>
+            <p class="hero-prompt">${escapeHtml(heroPrompt(entry.dataset, item))}</p>
           </div>
         `;
       }).join("");
@@ -1391,27 +1411,57 @@
       });
     }
 
-    function filteredGalleryItems() {
-      const cfg = DATASETS[state.activeDataset];
-      const query = document.getElementById("search").value.trim().toLowerCase();
-      return state.data[state.activeDataset].prompts.filter((item) => {
-        const text = `${promptText(state.activeDataset, item)} ${detailText(state.activeDataset, item)}`.toLowerCase();
-        return !query || text.includes(query);
+    function galleryItems() {
+      return state.data[state.activeDataset]?.prompts || [];
+    }
+
+    function cancelGalleryPrefetch() {
+      if (galleryPrefetchController) galleryPrefetchController.abort();
+      galleryPrefetchController = null;
+    }
+
+    function prefetchGalleryNeighbors() {
+      cancelGalleryPrefetch();
+      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || "")) return;
+
+      const items = galleryItems();
+      if (items.length <= 1) return;
+      const neighborIndices = new Set([
+        (state.galleryIndex - 1 + items.length) % items.length,
+        (state.galleryIndex + 1) % items.length,
+      ]);
+      const methods = DATASETS[state.activeDataset].methods;
+      const urls = Array.from(neighborIndices)
+        .flatMap((index) => methods.map((method) => videoSrc(state.activeDataset, method.key, items[index])))
+        .filter((url) => !galleryPrefetchedUrls.has(url));
+      if (!urls.length) return;
+
+      const controller = new AbortController();
+      galleryPrefetchController = controller;
+      Promise.allSettled(urls.map(async (url) => {
+        const response = await fetch(url, { cache: "force-cache", signal: controller.signal });
+        if (!response.ok) throw new Error(`Failed to prefetch ${url}`);
+        await response.arrayBuffer();
+        galleryPrefetchedUrls.add(url);
+      })).finally(() => {
+        if (galleryPrefetchController === controller) galleryPrefetchController = null;
       });
     }
 
     function renderGallery() {
       const gallery = document.getElementById("gallery-list");
-      const items = filteredGalleryItems();
+      const items = galleryItems();
+      cancelGalleryPrefetch();
       unobserveMediaGroups(gallery);
       if (items.length) {
         state.galleryIndex = ((state.galleryIndex % items.length) + items.length) % items.length;
         gallery.innerHTML = makeSample(state.activeDataset, items[state.galleryIndex]);
-        document.getElementById("count").textContent = `${state.galleryIndex + 1} / ${items.length} prompts`;
+        document.getElementById("count").textContent = `${state.galleryIndex + 1} / ${items.length}`;
       } else {
         state.galleryIndex = 0;
-        gallery.innerHTML = '<div class="load-state">No prompts match this filter.</div>';
-        document.getElementById("count").textContent = "0 prompts";
+        gallery.innerHTML = '<div class="load-state">No prompts are available.</div>';
+        document.getElementById("count").textContent = "0 / 0";
       }
       document.getElementById("gallery-prev").disabled = items.length <= 1;
       document.getElementById("gallery-next").disabled = items.length <= 1;
@@ -1423,7 +1473,7 @@
     }
 
     function stepGallery(step) {
-      const items = filteredGalleryItems();
+      const items = galleryItems();
       if (items.length <= 1) return;
       state.galleryIndex = (state.galleryIndex + step + items.length) % items.length;
       renderGallery();
@@ -1438,30 +1488,28 @@
         });
       });
 
-      document.getElementById("search").addEventListener("input", () => {
-        state.galleryIndex = 0;
-        renderGallery();
-      });
       document.getElementById("gallery-prev").addEventListener("click", () => stepGallery(-1));
       document.getElementById("gallery-next").addEventListener("click", () => stepGallery(1));
 
-      const autoplayButton = document.getElementById("autoplay");
-      autoplayButton.addEventListener("click", () => {
-        state.autoplay = !state.autoplay;
-        autoplayButton.setAttribute("aria-pressed", state.autoplay ? "true" : "false");
-        autoplayButton.textContent = state.autoplay ? "Autoplay on" : "Autoplay off";
-        if (!state.autoplay) {
-          document.querySelectorAll("video").forEach((video) => video.pause());
-        } else {
-          document.querySelectorAll('[data-near-viewport="true"]').forEach((group) => startMediaGroup(group));
+      const galleryList = document.getElementById("gallery-list");
+      let swipeStart = null;
+      galleryList.addEventListener("touchstart", (event) => {
+        if (event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        swipeStart = { x: touch.clientX, y: touch.clientY };
+      }, { passive: true });
+      galleryList.addEventListener("touchend", (event) => {
+        if (!swipeStart || !event.changedTouches.length) return;
+        const touch = event.changedTouches[0];
+        const dx = touch.clientX - swipeStart.x;
+        const dy = touch.clientY - swipeStart.y;
+        swipeStart = null;
+        if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          stepGallery(dx < 0 ? 1 : -1);
         }
-      });
+      }, { passive: true });
+      galleryList.addEventListener("touchcancel", () => { swipeStart = null; }, { passive: true });
 
-      document.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-replay]");
-        if (!button) return;
-        startMediaGroup(button.closest(".sample"), { forcePlay: true, rewind: true });
-      });
     }
 
     async function init() {
