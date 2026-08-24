@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Scaling Reinforcement Learning for Diffusion Models via Velocity Matching</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <style>
@@ -210,6 +211,7 @@
     }
 
     .hero-video-band {
+      position: relative;
       margin-top: 34px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -477,6 +479,53 @@
       font-weight: 650;
     }
 
+    .video-stage {
+      position: relative;
+    }
+
+    .media-status {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(247, 247, 244, 0.94);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      pointer-events: none;
+    }
+
+    .hero-video-band.is-loading > .media-status,
+    .hero-video-band.is-error > .media-status,
+    .sample.is-loading .media-status,
+    .sample.is-error .media-status {
+      display: flex;
+    }
+
+    .media-status::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      flex: none;
+      border: 2px solid var(--line-strong);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: media-spin 0.8s linear infinite;
+    }
+
+    .is-error .media-status::before {
+      display: none;
+    }
+
+    @keyframes media-spin {
+      to { transform: rotate(360deg); }
+    }
+
     .video-grid {
       display: grid;
       gap: 10px;
@@ -600,6 +649,35 @@
     .count {
       color: var(--soft);
       font-size: 14px;
+    }
+
+    .gallery-carousel {
+      display: grid;
+      grid-template-columns: 46px minmax(0, 1fr) 46px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .gallery-arrow {
+      width: 46px;
+      height: 64px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      font: 600 30px/1 Georgia, "Times New Roman", Times, serif;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+    }
+
+    .gallery-arrow:hover {
+      border-color: var(--line-strong);
+      background: #f0f0eb;
+    }
+
+    .gallery-arrow:disabled {
+      opacity: 0.35;
+      cursor: default;
     }
 
     .cite-box {
@@ -765,6 +843,34 @@
       .sample-id {
         grid-column: 1 / -1;
       }
+
+      .gallery-carousel {
+        grid-template-areas:
+          "prev next"
+          "gallery gallery";
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .gallery-arrow {
+        width: 72px;
+        height: 42px;
+        font-size: 25px;
+      }
+
+      #gallery-list {
+        grid-area: gallery;
+      }
+
+      #gallery-prev {
+        grid-area: prev;
+        justify-self: end;
+      }
+
+      #gallery-next {
+        grid-area: next;
+        justify-self: start;
+      }
     }
   </style>
 </head>
@@ -919,8 +1025,12 @@
         <input class="search" id="search" type="search" placeholder="Filter prompts..." autocomplete="off">
         <span class="count" id="count"></span>
       </div>
-      <div class="gallery-list" id="gallery-list">
-        <div class="load-state">Loading gallery...</div>
+      <div class="gallery-carousel">
+        <button class="gallery-arrow" id="gallery-prev" type="button" aria-label="Previous prompt">&#10094;</button>
+        <div class="gallery-list" id="gallery-list">
+          <div class="load-state">Loading gallery...</div>
+        </div>
+        <button class="gallery-arrow" id="gallery-next" type="button" aria-label="Next prompt">&#10095;</button>
       </div>
     </div>
   </section>
@@ -1000,9 +1110,15 @@
     const state = {
       data: {},
       activeDataset: "wan21",
+      galleryIndex: 0,
       autoplay: true,
       observer: null
     };
+
+    const MEDIA_RELEASE_DELAY = 4000;
+    const MEDIA_READY_TIMEOUT = 15000;
+    const mediaReleaseTimers = new WeakMap();
+    const mediaGenerations = new WeakMap();
 
     const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (ch) => ({
       "&": "&amp;",
@@ -1055,6 +1171,151 @@
       return item[cfg.detailKey] || "";
     }
 
+    function mediaGroups(root = document) {
+      const groups = Array.from(root.querySelectorAll(".sample, #hero-videos"));
+      if (root.matches?.(".sample, #hero-videos")) groups.unshift(root);
+      return groups;
+    }
+
+    function mediaVideos(group) {
+      return Array.from(group.querySelectorAll("video[data-src]"));
+    }
+
+    function clearMediaRelease(group) {
+      const timer = mediaReleaseTimers.get(group);
+      if (timer !== undefined) {
+        window.clearTimeout(timer);
+        mediaReleaseTimers.delete(group);
+      }
+    }
+
+    function attachVideo(video) {
+      if (video.getAttribute("src")) return;
+      video.preload = "auto";
+      video.src = video.dataset.src;
+    }
+
+    function detachVideo(video) {
+      video.pause();
+      video.removeAttribute("src");
+      video.preload = "none";
+      video.load();
+    }
+
+    function playVideo(video) {
+      const promise = video.play();
+      if (promise?.catch) promise.catch(() => {});
+    }
+
+    function setMediaState(group, nextState, message = "") {
+      group.classList.toggle("is-loading", nextState === "loading");
+      group.classList.toggle("is-error", nextState === "error");
+      group.dataset.mediaState = nextState;
+      const status = group.querySelector(".media-status");
+      if (status && message) status.textContent = message;
+    }
+
+    function waitForVideo(video) {
+      if (video.readyState >= 3 || video.error) return Promise.resolve();
+      return new Promise((resolve) => {
+        let timer = null;
+        const finish = () => {
+          video.removeEventListener("canplay", finish);
+          video.removeEventListener("error", finish);
+          if (timer !== null) window.clearTimeout(timer);
+          resolve();
+        };
+        video.addEventListener("canplay", finish, { once: true });
+        video.addEventListener("error", finish, { once: true });
+        timer = window.setTimeout(finish, MEDIA_READY_TIMEOUT);
+      });
+    }
+
+    async function startMediaGroup(group, { forcePlay = false, rewind = true } = {}) {
+      if (!group?.isConnected) return;
+      clearMediaRelease(group);
+      const videos = mediaVideos(group);
+      if (!videos.length) return;
+
+      const alreadyReady = videos.every((video) => video.getAttribute("src") && video.readyState >= 3);
+      if (alreadyReady && !forcePlay) {
+        if (state.autoplay) videos.forEach(playVideo);
+        setMediaState(group, "ready");
+        return;
+      }
+
+      const generation = (mediaGenerations.get(group) || 0) + 1;
+      mediaGenerations.set(group, generation);
+      setMediaState(group, "loading", group.id === "hero-videos" ? "Loading videos..." : "Loading comparison...");
+      videos.forEach(attachVideo);
+
+      // Starting muted videos makes iOS fetch actual frames instead of metadata only.
+      if (state.autoplay || forcePlay) videos.forEach(playVideo);
+      await Promise.all(videos.map(waitForVideo));
+      if (!group.isConnected || mediaGenerations.get(group) !== generation) return;
+
+      const failed = videos.some((video) => video.error || video.readyState < 3);
+      if (failed) {
+        setMediaState(group, "error", "Unable to load every video.");
+        return;
+      }
+
+      if (rewind) {
+        videos.forEach((video) => {
+          try { video.currentTime = 0; } catch (_) {}
+        });
+      }
+      if (state.autoplay || forcePlay) videos.forEach(playVideo);
+      window.requestAnimationFrame(() => {
+        if (group.isConnected && mediaGenerations.get(group) === generation) {
+          setMediaState(group, "ready");
+        }
+      });
+    }
+
+    function stopMediaGroup(group, { immediate = false } = {}) {
+      if (!group) return;
+      clearMediaRelease(group);
+      mediaGenerations.set(group, (mediaGenerations.get(group) || 0) + 1);
+      const videos = mediaVideos(group);
+      videos.forEach((video) => video.pause());
+      setMediaState(group, "idle");
+      const release = () => {
+        mediaReleaseTimers.delete(group);
+        videos.forEach(detachVideo);
+      };
+      if (immediate) release();
+      else mediaReleaseTimers.set(group, window.setTimeout(release, MEDIA_RELEASE_DELAY));
+    }
+
+    function observeMediaGroups(root = document) {
+      if (!state.observer) return;
+      mediaGroups(root).forEach((group) => state.observer.observe(group));
+    }
+
+    function unobserveMediaGroups(root) {
+      mediaGroups(root).forEach((group) => {
+        state.observer?.unobserve(group);
+        stopMediaGroup(group, { immediate: true });
+      });
+    }
+
+    function initMediaObserver() {
+      if (!("IntersectionObserver" in window)) {
+        mediaGroups().forEach((group) => startMediaGroup(group));
+        return;
+      }
+      state.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const group = entry.target;
+          group.dataset.nearViewport = entry.isIntersecting ? "true" : "false";
+          if (entry.isIntersecting) startMediaGroup(group);
+          else stopMediaGroup(group);
+        });
+      }, { rootMargin: "200px 0px", threshold: 0 });
+      observeMediaGroups();
+    }
+
     function makeVideoFigure(datasetKey, method, item) {
       const cls = method.ours ? "ours" : "";
       return `
@@ -1086,8 +1347,11 @@
             </div>
             <button class="replay" data-replay>Replay</button>
           </div>
-          <div class="video-grid ${cols}">
-            ${methods.map((method) => makeVideoFigure(datasetKey, method, item)).join("")}
+          <div class="video-stage">
+            <div class="media-status" role="status" aria-live="polite">Loading comparison...</div>
+            <div class="video-grid ${cols}">
+              ${methods.map((method) => makeVideoFigure(datasetKey, method, item)).join("")}
+            </div>
           </div>
         </article>
       `;
@@ -1098,26 +1362,17 @@
         ...DATASETS.wan21.hero.map((entry) => ({ dataset: "wan21", ...entry })),
         ...DATASETS.skyreels.hero.map((entry) => ({ dataset: "skyreels", ...entry }))
       ];
-      document.getElementById("hero-videos").innerHTML = heroItems.map((entry) => {
+      document.getElementById("hero-videos").innerHTML = `
+        <div class="media-status" role="status" aria-live="polite">Loading videos...</div>
+      ` + heroItems.map((entry) => {
         const item = getItem(entry.dataset, entry.id);
         return `
           <div class="hero-clip">
-            <video src="${escapeHtml(videoSrc(entry.dataset, entry.method, item))}" preload="auto" muted autoplay loop playsinline></video>
+            <video data-src="${escapeHtml(videoSrc(entry.dataset, entry.method, item))}" preload="none" muted loop playsinline></video>
             <span>${escapeHtml(entry.label)}</span>
           </div>
         `;
       }).join("");
-    }
-
-    function primeHeroVideos() {
-      document.querySelectorAll(".hero-clip video").forEach((video) => {
-        video.addEventListener("loadedmetadata", () => {
-          if (Number.isFinite(video.duration) && video.duration > 0.6) {
-            video.currentTime = 0.35;
-          }
-          if (state.autoplay) video.play().catch(() => {});
-        }, { once: true });
-      });
     }
 
     function renderTeasers() {
@@ -1136,47 +1391,59 @@
       });
     }
 
-    function renderGallery() {
+    function filteredGalleryItems() {
       const cfg = DATASETS[state.activeDataset];
       const query = document.getElementById("search").value.trim().toLowerCase();
-      const items = state.data[state.activeDataset].prompts.filter((item) => {
+      return state.data[state.activeDataset].prompts.filter((item) => {
         const text = `${promptText(state.activeDataset, item)} ${detailText(state.activeDataset, item)}`.toLowerCase();
         return !query || text.includes(query);
       });
-      document.getElementById("gallery-list").innerHTML = items.map((item) => makeSample(state.activeDataset, item)).join("");
-      document.getElementById("count").textContent = `${items.length} / ${state.data[state.activeDataset].prompts.length} prompts`;
+    }
+
+    function renderGallery() {
+      const gallery = document.getElementById("gallery-list");
+      const items = filteredGalleryItems();
+      unobserveMediaGroups(gallery);
+      if (items.length) {
+        state.galleryIndex = ((state.galleryIndex % items.length) + items.length) % items.length;
+        gallery.innerHTML = makeSample(state.activeDataset, items[state.galleryIndex]);
+        document.getElementById("count").textContent = `${state.galleryIndex + 1} / ${items.length} prompts`;
+      } else {
+        state.galleryIndex = 0;
+        gallery.innerHTML = '<div class="load-state">No prompts match this filter.</div>';
+        document.getElementById("count").textContent = "0 prompts";
+      }
+      document.getElementById("gallery-prev").disabled = items.length <= 1;
+      document.getElementById("gallery-next").disabled = items.length <= 1;
       document.querySelectorAll(".tab").forEach((tab) => {
         tab.setAttribute("aria-pressed", tab.dataset.dataset === state.activeDataset ? "true" : "false");
       });
       updateSamplingNotes();
-      attachVideoObserver();
+      observeMediaGroups(gallery);
     }
 
-    function attachVideoObserver() {
-      if (state.observer) state.observer.disconnect();
-      state.observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          const video = entry.target;
-          if (entry.isIntersecting) {
-            if (!video.src) video.src = video.dataset.src;
-            if (state.autoplay) video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        }
-      }, { rootMargin: "180px 0px", threshold: 0.16 });
-      document.querySelectorAll("video").forEach((video) => state.observer.observe(video));
+    function stepGallery(step) {
+      const items = filteredGalleryItems();
+      if (items.length <= 1) return;
+      state.galleryIndex = (state.galleryIndex + step + items.length) % items.length;
+      renderGallery();
     }
 
     function bindControls() {
       document.querySelectorAll(".tab").forEach((tab) => {
         tab.addEventListener("click", () => {
           state.activeDataset = tab.dataset.dataset;
+          state.galleryIndex = 0;
           renderGallery();
         });
       });
 
-      document.getElementById("search").addEventListener("input", renderGallery);
+      document.getElementById("search").addEventListener("input", () => {
+        state.galleryIndex = 0;
+        renderGallery();
+      });
+      document.getElementById("gallery-prev").addEventListener("click", () => stepGallery(-1));
+      document.getElementById("gallery-next").addEventListener("click", () => stepGallery(1));
 
       const autoplayButton = document.getElementById("autoplay");
       autoplayButton.addEventListener("click", () => {
@@ -1185,17 +1452,15 @@
         autoplayButton.textContent = state.autoplay ? "Autoplay on" : "Autoplay off";
         if (!state.autoplay) {
           document.querySelectorAll("video").forEach((video) => video.pause());
+        } else {
+          document.querySelectorAll('[data-near-viewport="true"]').forEach((group) => startMediaGroup(group));
         }
       });
 
       document.addEventListener("click", (event) => {
         const button = event.target.closest("[data-replay]");
         if (!button) return;
-        button.closest(".sample").querySelectorAll("video").forEach((video) => {
-          if (!video.src) video.src = video.dataset.src;
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        });
+        startMediaGroup(button.closest(".sample"), { forcePlay: true, rewind: true });
       });
     }
 
@@ -1203,11 +1468,10 @@
       try {
         await loadData();
         renderHeroVideos();
-        primeHeroVideos();
         renderTeasers();
         renderGallery();
         bindControls();
-        attachVideoObserver();
+        initMediaObserver();
       } catch (error) {
         const message = `
           <div class="load-state">
