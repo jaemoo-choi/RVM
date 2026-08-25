@@ -10,8 +10,8 @@
     {
       "id": "00129",
       "file": "00129.mp4",
-      "prompt": "san francisco skyline at sunset, camera pans left",
-      "extended_prompt": "The San Francisco skyline is bathed in the warm hues of a setting sun, casting a golden glow across the cityscape. Skyscrapers and historic buildings stand tall against a backdrop of dramatic clouds, their silhouettes softened by the fading light. The iconic Golden Gate Bridge stretches into the distance, its silhouette barely visible on the horizon. The sky transitions from deep oranges to soft blues, creating a stunning contrast with the urban landscape below, camera pans left",
+      "prompt": "San Francisco skyline at sunset, camera pans left.",
+      "extended_prompt": "The San Francisco skyline is bathed in the warm hues of a setting sun, casting a golden glow across the cityscape. Skyscrapers and historic buildings stand tall against a backdrop of dramatic clouds, their silhouettes softened by the fading light. The iconic Golden Gate Bridge stretches into the distance, its silhouette barely visible on the horizon. The sky transitions from deep oranges to soft blues, creating a stunning contrast with the urban landscape below, camera pans left.",
       "ref_image": "000129.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -24,8 +24,8 @@
     {
       "id": "00226",
       "file": "00226.mp4",
-      "prompt": "a large crowd of people walking in a shopping mall, camera pans right",
-      "extended_prompt": "A bustling crowd of people meanders through the ornate Galleria Vittorio Emanuele II in Milan, Italy, their figures small against the grandeur of the intricate stone architecture and arched glass ceiling. The vibrant mosaic floor beneath them sparkles under the natural light filtering through the skylight, while storefronts like Piumelli and Churche's invite passersby to explore, camera pans right",
+      "prompt": "A large crowd of people walking in a shopping mall, camera pans right.",
+      "extended_prompt": "A bustling crowd of people meanders through the ornate Galleria Vittorio Emanuele II in Milan, Italy, their figures small against the grandeur of the intricate stone architecture and arched glass ceiling. The vibrant mosaic floor beneath them sparkles under the natural light filtering through the skylight, while storefronts like Piumelli and Churche's invite passersby to explore, camera pans right.",
       "ref_image": "000226.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -38,8 +38,8 @@
     {
       "id": "00335",
       "file": "00335.mp4",
-      "prompt": "tower bridge in london, camera static",
-      "extended_prompt": "The Tower Bridge in London stands illuminated against the twilight sky, its iconic towers glowing with warm lights as boats glide across the River Thames below. The bridge's intricate suspension cables stretch gracefully, connecting the two sides of the cityscape, while the surrounding buildings, bathed in the soft glow of evening lights, create a vibrant backdrop, camera static",
+      "prompt": "Tower Bridge in London, camera static.",
+      "extended_prompt": "The Tower Bridge in London stands illuminated against the twilight sky, its iconic towers glowing with warm lights as boats glide across the River Thames below. The bridge's intricate suspension cables stretch gracefully, connecting the two sides of the cityscape, while the surrounding buildings, bathed in the soft glow of evening lights, create a vibrant backdrop, camera static.",
       "ref_image": "000335.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -52,8 +52,8 @@
     {
       "id": "00609",
       "file": "00609.mp4",
-      "prompt": "a large wave crashes into a lighthouse on a stormy day, camera pans left",
-      "extended_prompt": "A massive wave crashes dramatically against a lighthouse on a stormy day, its crest curling and frothing as it crashes onto the rocky breakwater. The lighthouse, perched atop the jagged rocks, stands resilient amidst the turbulent sea, while the dark, ominous clouds loom overhead, casting a foreboding shadow over the scene, camera pans left",
+      "prompt": "A large wave crashes into a lighthouse on a stormy day, camera pans left.",
+      "extended_prompt": "A massive wave crashes dramatically against a lighthouse on a stormy day, its crest curling and frothing as it crashes onto the rocky breakwater. The lighthouse, perched atop the jagged rocks, stands resilient amidst the turbulent sea, while the dark, ominous clouds loom overhead, casting a foreboding shadow over the scene, camera pans left.",
       "ref_image": "000609.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -66,8 +66,8 @@
     {
       "id": "00654",
       "file": "00654.mp4",
-      "prompt": "a flock of birds flying over a tree at sunset, camera zooms out",
-      "extended_prompt": "A flock of birds gracefully flies across the sky at sunset, their silhouettes contrasting against the vibrant orange and yellow hues of the setting sun. Below them, a lone tree stands on a grassy hill, its bare branches reaching towards the heavens as the day transitions into night, camera zooms out",
+      "prompt": "A flock of birds flying over a tree at sunset, camera zooms out.",
+      "extended_prompt": "A flock of birds gracefully flies across the sky at sunset, their silhouettes contrasting against the vibrant orange and yellow hues of the setting sun. Below them, a lone tree stands on a grassy hill, its bare branches reaching towards the heavens as the day transitions into night, camera zooms out.",
       "ref_image": "000654.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -80,8 +80,8 @@
     {
       "id": "00683",
       "file": "00683.mp4",
-      "prompt": "a group of people standing on top of a green hill, camera tilts up",
-      "extended_prompt": "A group of people stands atop a verdant hill, overlooking a serene bay where boats gently bob on the calm waters. The lush greenery of the hill contrasts beautifully with the deep blue of the sea, while distant mountains rise majestically under a partly cloudy sky, camera tilts up",
+      "prompt": "A group of people standing on top of a green hill, camera tilts up.",
+      "extended_prompt": "A group of people stands atop a verdant hill, overlooking a serene bay where boats gently bob on the calm waters. The lush greenery of the hill contrasts beautifully with the deep blue of the sea, while distant mountains rise majestically under a partly cloudy sky, camera tilts up.",
       "ref_image": "000683.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -94,8 +94,8 @@
     {
       "id": "00700",
       "file": "00700.mp4",
-      "prompt": "a lake surrounded by mountains and flowers, camera tilts down",
-      "extended_prompt": "A serene lake curves gracefully through a lush landscape, its calm waters reflecting the verdant hills and distant mountains. In the foreground, vibrant purple flowers bloom on a rocky outcrop, swaying gently in the breeze, adding a splash of color to the tranquil scene, camera tilts down",
+      "prompt": "A lake surrounded by mountains and flowers, camera tilts down.",
+      "extended_prompt": "A serene lake curves gracefully through a lush landscape, its calm waters reflecting the verdant hills and distant mountains. In the foreground, vibrant purple flowers bloom on a rocky outcrop, swaying gently in the breeze, adding a splash of color to the tranquil scene, camera tilts down.",
       "ref_image": "000700.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -108,8 +108,8 @@
     {
       "id": "00796",
       "file": "00796.mp4",
-      "prompt": "a sandy beach with palm trees on the shore, camera tilts down",
-      "extended_prompt": "A serene sandy beach stretches along the shore, dotted with lush green palm trees swaying gently in the breeze. The sun casts a warm glow, illuminating the golden sand and creating a tranquil atmosphere as gentle waves lap against the shore, camera tilts down",
+      "prompt": "A sandy beach with palm trees on the shore, camera tilts down.",
+      "extended_prompt": "A serene sandy beach stretches along the shore, dotted with lush green palm trees swaying gently in the breeze. The sun casts a warm glow, illuminating the golden sand and creating a tranquil atmosphere as gentle waves lap against the shore, camera tilts down.",
       "ref_image": "000796.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -122,8 +122,8 @@
     {
       "id": "00860",
       "file": "00860.mp4",
-      "prompt": "a very large waterfall in the middle of the day, camera tilts down",
-      "extended_prompt": "A massive waterfall cascades dramatically across a misty landscape, its powerful flow creating a dense curtain of spray that billows into the air. The water plummets from a high cliff, its frothy white currents contrasting sharply against the dark, shadowed rocks below. In the distance, a line of trees stands silhouetted against a pale sky, adding depth to this awe-inspiring natural spectacle, camera tilts down",
+      "prompt": "A very large waterfall in the middle of the day, camera tilts down.",
+      "extended_prompt": "A massive waterfall cascades dramatically across a misty landscape, its powerful flow creating a dense curtain of spray that billows into the air. The water plummets from a high cliff, its frothy white currents contrasting sharply against the dark, shadowed rocks below. In the distance, a line of trees stands silhouetted against a pale sky, adding depth to this awe-inspiring natural spectacle, camera tilts down.",
       "ref_image": "000860.jpg",
       "vbench_dim": [
         "camera_motion"
@@ -136,7 +136,7 @@
     {
       "id": "00864",
       "file": "00864.mp4",
-      "prompt": "a large waterfall in the middle of a lush green hillside",
+      "prompt": "A large waterfall in the middle of a lush green hillside.",
       "extended_prompt": "A majestic waterfall cascades down a lush green hillside, its powerful flow creating mist as it crashes into the rocky riverbed below. The vibrant greenery contrasts sharply with the dark, textured rocks, while a few scattered clouds drift lazily across the bright blue sky above.",
       "ref_image": "000864.jpg",
       "vbench_dim": [
@@ -154,8 +154,8 @@
     {
       "id": "00885",
       "file": "00885.mp4",
-      "prompt": "a red panda eating bamboo in a zoo",
-      "extended_prompt": "addCriterion A red panda, its fur a rich blend of reddish-brown and white, sits amidst lush green foliage, delicately nibbling on a piece of bamboo. The panda's expressive eyes and perked-up ears suggest curiosity and alertness as it enjoys its meal in a verdant, naturalistic enclosure within a zoo.",
+      "prompt": "A red panda eating bamboo in a zoo.",
+      "extended_prompt": "A red panda, its fur a rich blend of reddish-brown and white, sits amidst lush green foliage, delicately nibbling on a piece of bamboo. The panda's expressive eyes and perked-up ears suggest curiosity and alertness as it enjoys its meal in a verdant, naturalistic enclosure within a zoo.",
       "ref_image": "000885.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -174,8 +174,8 @@
     {
       "id": "00895",
       "file": "00895.mp4",
-      "prompt": "a seal swimming in the water",
-      "extended_prompt": "addCriterion A curious sea lion swims gracefully through crystal-clear turquoise waters, its sleek, dark body partially submerged as it glides effortlessly. The seal's expressive eyes and whiskers are prominently visible, adding to its captivating presence. Bubbles gently rise from the surface, creating a serene underwater atmosphere.",
+      "prompt": "A seal swimming in the water.",
+      "extended_prompt": "A curious sea lion swims gracefully through crystal-clear turquoise waters, its sleek, dark body partially submerged as it glides effortlessly. The seal's expressive eyes and whiskers are prominently visible, adding to its captivating presence. Bubbles gently rise from the surface, creating a serene underwater atmosphere.",
       "ref_image": "000895.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -194,8 +194,8 @@
     {
       "id": "00896",
       "file": "00896.mp4",
-      "prompt": "a panda bear is eating a piece of bamboo",
-      "extended_prompt": "addCriterion A panda bear sits comfortably on a wooden platform, its black-and-white fur contrasting sharply against the greenery surrounding it. With a contented expression, the panda holds a piece of bamboo in its right paw, bringing it to its mouth as it enjoys a meal. The lush foliage and vibrant pink flowers in the background add a touch of nature's beauty to this serene moment.",
+      "prompt": "A panda bear is eating a piece of bamboo.",
+      "extended_prompt": "A panda bear sits comfortably on a wooden platform, its black-and-white fur contrasting sharply against the greenery surrounding it. With a contented expression, the panda holds a piece of bamboo in its right paw, bringing it to its mouth as it enjoys a meal. The lush foliage and vibrant pink flowers in the background add a touch of nature's beauty to this serene moment.",
       "ref_image": "000896.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -214,8 +214,8 @@
     {
       "id": "00900",
       "file": "00900.mp4",
-      "prompt": "a bald eagle flying over a tree filled forest",
-      "extended_prompt": "addCriterion A majestic bald eagle soars gracefully over a dense forest, its wings spread wide against a backdrop of vibrant green foliage. The bird's powerful talons are slightly extended as it glides effortlessly through the air, its sharp yellow beak pointed forward, scanning the treetops below.",
+      "prompt": "A bald eagle flying over a tree-filled forest.",
+      "extended_prompt": "A majestic bald eagle soars gracefully over a dense forest, its wings spread wide against a backdrop of vibrant green foliage. The bird's powerful talons are slightly extended as it glides effortlessly through the air, its sharp yellow beak pointed forward, scanning the treetops below.",
       "ref_image": "000900.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -234,7 +234,7 @@
     {
       "id": "00907",
       "file": "00907.mp4",
-      "prompt": "a tiger walking on a dirt path in the woods",
+      "prompt": "A tiger walking on a dirt path in the woods.",
       "extended_prompt": "A majestic tiger strides confidently along a sunlit dirt path, its powerful form casting long shadows through the dense forest. The tiger's golden fur, marked with bold black stripes, gleams under the dappled sunlight filtering through the lush green foliage above. Its head is slightly lowered as it moves forward, ears perked alertly, embodying both grace and strength in this serene woodland setting.",
       "ref_image": "000907.jpg",
       "vbench_dim": [
@@ -254,8 +254,8 @@
     {
       "id": "00909",
       "file": "00909.mp4",
-      "prompt": "a squirrel sitting on the ground eating a piece of bread",
-      "extended_prompt": "addCriterion A chipmunk perches gracefully on a mossy rock, its striped fur gleaming as it nibbles on a piece of bread. Surrounding crumbs hint at a recent snack, while the soft-focus greenery in the background suggests a serene woodland setting. The chipmunk's alert eyes and twitching whiskers convey a sense of curiosity and focus.",
+      "prompt": "A squirrel sitting on the ground eating a piece of bread.",
+      "extended_prompt": "A chipmunk perches gracefully on a mossy rock, its striped fur gleaming as it nibbles on a piece of bread. Surrounding crumbs hint at a recent snack, while the soft-focus greenery in the background suggests a serene woodland setting. The chipmunk's alert eyes and twitching whiskers convey a sense of curiosity and focus.",
       "ref_image": "000909.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -274,8 +274,8 @@
     {
       "id": "00923",
       "file": "00923.mp4",
-      "prompt": "a sailboat is drifting on the ocean",
-      "extended_prompt": "addCriterion A sailboat drifts gracefully across the vast expanse of the ocean, its white sails billowing slightly in the gentle breeze. The deep blue water ripples gently beneath the vessel, reflecting the soft light of a partly cloudy sky above. A lone figure stands at the bow, gazing out towards the horizon, embodying a sense of serene adventure.",
+      "prompt": "A sailboat is drifting on the ocean.",
+      "extended_prompt": "A sailboat drifts gracefully across the vast expanse of the ocean, its white sails billowing slightly in the gentle breeze. The deep blue water ripples gently beneath the vessel, reflecting the soft light of a partly cloudy sky above. A lone figure stands at the bow, gazing out towards the horizon, embodying a sense of serene adventure.",
       "ref_image": "000923.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -294,8 +294,8 @@
     {
       "id": "00934",
       "file": "00934.mp4",
-      "prompt": "a blue train traveling through a lush green area",
-      "extended_prompt": "addCriterion A vibrant blue train snakes through a verdant landscape, its sleek form contrasting against the lush greenery. The train, composed of several connected cars, glides along a curving railway track that winds through a dense forest. The surrounding area is dotted with small houses and rustic buildings, nestled among the trees, while a few people can be seen walking along the tracks, adding a sense of life to the tranquil scene.",
+      "prompt": "A blue train traveling through a lush green area.",
+      "extended_prompt": "A vibrant blue train snakes through a verdant landscape, its sleek form contrasting against the lush greenery. The train, composed of several connected cars, glides along a curving railway track that winds through a dense forest. The surrounding area is dotted with small houses and rustic buildings, nestled among the trees, while a few people can be seen walking along the tracks, adding a sense of life to the tranquil scene.",
       "ref_image": "000934.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -314,8 +314,8 @@
     {
       "id": "00954",
       "file": "00954.mp4",
-      "prompt": "a person is cooking meat on a grill with flames",
-      "extended_prompt": "addCriterion A person's hand skillfully maneuvers tongs over sizzling meat on a grill, where vibrant flames dance and smoke billows, creating a dynamic scene of outdoor cooking.",
+      "prompt": "A person is cooking meat on a grill with flames.",
+      "extended_prompt": "A person's hand skillfully maneuvers tongs over sizzling meat on a grill, where vibrant flames dance and smoke billows, creating a dynamic scene of outdoor cooking.",
       "ref_image": "000954.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -334,8 +334,8 @@
     {
       "id": "00972",
       "file": "00972.mp4",
-      "prompt": "an astronaut floating in space with the earth in the background",
-      "extended_prompt": "addCriterion A lone astronaut floats serenely in the vastness of space, their white spacesuit gleaming against the black backdrop. The Earth looms below, its blue oceans and swirling clouds illuminated by the soft glow of the sun rising on the horizon, casting a warm, ethereal light across the planet's surface.",
+      "prompt": "An astronaut floating in space with the Earth in the background.",
+      "extended_prompt": "A lone astronaut floats serenely in the vastness of space, their white spacesuit gleaming against the black backdrop. The Earth looms below, its blue oceans and swirling clouds illuminated by the soft glow of the sun rising on the horizon, casting a warm, ethereal light across the planet's surface.",
       "ref_image": "000972.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -354,8 +354,8 @@
     {
       "id": "00980",
       "file": "00980.mp4",
-      "prompt": "a little girl wearing a purple helmet riding a blue bike",
-      "extended_prompt": "addCriterion A young child, adorned in a cozy gray sweater and brown boots, confidently balances on a vibrant blue tricycle, wearing a protective purple helmet with pink accents. The child's small hands grip the handlebars as they stand on the bike, ready to pedal, set against a backdrop of lush green foliage.",
+      "prompt": "A little girl wearing a purple helmet riding a blue bike.",
+      "extended_prompt": "A young child, adorned in a cozy gray sweater and brown boots, confidently balances on a vibrant blue tricycle, wearing a protective purple helmet with pink accents. The child's small hands grip the handlebars as they stand on the bike, ready to pedal, set against a backdrop of lush green foliage.",
       "ref_image": "000980.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -374,8 +374,8 @@
     {
       "id": "00985",
       "file": "00985.mp4",
-      "prompt": "a smiling woman with her hands clasped",
-      "extended_prompt": "addCriterion A radiant elderly woman, adorned with a vibrant patterned headscarf and a gold nose ring, beams warmly as she clasps her hands together in a gesture of greeting or prayer. Her weathered hands, marked by years of labor, rest gently against each other, while her red sweater and green necklace add splashes of color to her traditional attire. The blurred background hints at a rustic setting, possibly a village home, enhancing the intimate and heartfelt nature of the moment captured.",
+      "prompt": "A smiling woman with her hands clasped.",
+      "extended_prompt": "A radiant elderly woman, adorned with a vibrant patterned headscarf and a gold nose ring, beams warmly as she clasps her hands together in a gesture of greeting or prayer. Her weathered hands, marked by years of labor, rest gently against each other, while her red sweater and green necklace add splashes of color to her traditional attire. The blurred background hints at a rustic setting, possibly a village home, enhancing the intimate and heartfelt nature of the moment captured.",
       "ref_image": "000985.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -394,8 +394,8 @@
     {
       "id": "00991",
       "file": "00991.mp4",
-      "prompt": "a woman in a hat is putting salt into a basket",
-      "extended_prompt": "addCriterion A woman wearing a traditional conical hat bends over, her hands skillfully scooping salt from a mound in the shallow water and transferring it into a woven basket suspended on a rope. The golden light of sunset bathes the scene, highlighting the texture of the salt and the serene ripples on the water's surface.",
+      "prompt": "A woman in a hat is putting salt into a basket.",
+      "extended_prompt": "A woman wearing a traditional conical hat bends over, her hands skillfully scooping salt from a mound in the shallow water and transferring it into a woven basket suspended on a rope. The golden light of sunset bathes the scene, highlighting the texture of the salt and the serene ripples on the water's surface.",
       "ref_image": "000991.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -414,7 +414,7 @@
     {
       "id": "01000",
       "file": "01000.mp4",
-      "prompt": "a man on a surfboard riding a wave in the ocean",
+      "prompt": "A man on a surfboard riding a wave in the ocean.",
       "extended_prompt": "A man skillfully maneuvers a vibrant orange surfboard through the turquoise ocean, his body leaning into a sharp turn as he rides a powerful wave. Water sprays dramatically around him, capturing the intensity of the moment. His colorful board contrasts sharply against the deep blue sea, while the clear sky above enhances the scene's dynamic energy.",
       "ref_image": "001000.jpg",
       "vbench_dim": [
@@ -434,8 +434,8 @@
     {
       "id": "01001",
       "file": "01001.mp4",
-      "prompt": "a man sitting on steps playing an acoustic guitar",
-      "extended_prompt": "addCriterion A young man sits casually on weathered concrete steps, strumming an acoustic guitar with focused intensity. His curly hair frames his concentrated face as he leans against a vibrant yellow wall, which shows signs of age and wear. The lush greenery to his left contrasts with the rustic backdrop, while his red sneakers add a pop of color to the earthy tones of the scene.",
+      "prompt": "A man sitting on steps playing an acoustic guitar.",
+      "extended_prompt": "A young man sits casually on weathered concrete steps, strumming an acoustic guitar with focused intensity. His curly hair frames his concentrated face as he leans against a vibrant yellow wall, which shows signs of age and wear. The lush greenery to his left contrasts with the rustic backdrop, while his red sneakers add a pop of color to the earthy tones of the scene.",
       "ref_image": "001001.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -454,8 +454,8 @@
     {
       "id": "01008",
       "file": "01008.mp4",
-      "prompt": "a person riding a motorcycle down a road",
-      "extended_prompt": "addCriterion A lone motorcyclist glides down a sunlit rural road, flanked by dense trees whose leaves cast dappled shadows on the asphalt. The golden hour sun bathes the scene in warm hues, creating a serene and picturesque atmosphere as the rider moves steadily forward.",
+      "prompt": "A person riding a motorcycle down a road.",
+      "extended_prompt": "A lone motorcyclist glides down a sunlit rural road, flanked by dense trees whose leaves cast dappled shadows on the asphalt. The golden hour sun bathes the scene in warm hues, creating a serene and picturesque atmosphere as the rider moves steadily forward.",
       "ref_image": "001008.jpg",
       "vbench_dim": [
         "i2v_subject",
@@ -474,7 +474,7 @@
     {
       "id": "01037",
       "file": "01037.mp4",
-      "prompt": "A group of people in a yellow raft is rowing through turbulent waters",
+      "prompt": "A group of people in a yellow raft is rowing through turbulent waters.",
       "extended_prompt": "A group of six adventurers, clad in vibrant blue helmets and life jackets, skillfully navigate a yellow raft through frothy, turbulent waters. Their synchronized paddling creates a dynamic spray of water as they tackle the challenging rapids, their expressions focused yet exhilarated. The rugged riverbank, dotted with rocks, frames the intense action below.",
       "ref_image": "001037.jpg",
       "vbench_dim": [

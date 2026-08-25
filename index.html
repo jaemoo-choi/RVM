@@ -667,8 +667,11 @@
 
     .gallery-carousel {
       display: grid;
-      grid-template-columns: 46px minmax(0, 1fr) 46px;
-      gap: 12px;
+      grid-template-areas:
+        "prev next"
+        "gallery gallery";
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       align-items: center;
     }
 
@@ -677,15 +680,29 @@
     }
 
     .gallery-arrow {
-      width: 46px;
-      height: 64px;
+      width: 72px;
+      height: 42px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--paper);
       color: var(--ink);
       cursor: pointer;
-      font: 600 30px/1 Georgia, "Times New Roman", Times, serif;
+      font: 600 25px/1 Georgia, "Times New Roman", Times, serif;
       box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+    }
+
+    #gallery-list {
+      grid-area: gallery;
+    }
+
+    #gallery-prev {
+      grid-area: prev;
+      justify-self: end;
+    }
+
+    #gallery-next {
+      grid-area: next;
+      justify-self: start;
     }
 
     .gallery-arrow:hover {
@@ -718,7 +735,8 @@
     }
 
     .reference-list {
-      max-width: 920px;
+      width: 100%;
+      max-width: none;
       margin: 0;
       padding-left: 22px;
       color: #262626;
@@ -857,33 +875,6 @@
         grid-column: 1 / -1;
       }
 
-      .gallery-carousel {
-        grid-template-areas:
-          "prev next"
-          "gallery gallery";
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .gallery-arrow {
-        width: 72px;
-        height: 42px;
-        font-size: 25px;
-      }
-
-      #gallery-list {
-        grid-area: gallery;
-      }
-
-      #gallery-prev {
-        grid-area: prev;
-        justify-self: end;
-      }
-
-      #gallery-next {
-        grid-area: next;
-        justify-self: start;
-      }
     }
   </style>
 </head>
@@ -1093,7 +1084,7 @@
         methods: [
           { key: "base_wo_cfg", label: "Base (w/o CFG)" },
           { key: "base_w_cfg", label: "Base + CFG" },
-          { key: "rvm_ours", label: "RVM (Ours)", ours: true }
+          { key: "rvm_ours", label: "RVM (Ours, w/o CFG)", ours: true }
         ],
         teaserIds: ["00", "14"],
         hero: [
@@ -1109,7 +1100,7 @@
         detailLabel: "extended rewrite",
         methods: [
           { key: "base_wo_cfg", label: "Base" },
-          { key: "epg_bump", label: "RVM (Ours)", ours: true }
+          { key: "epg_bump", label: "RVM (Ours, w/o CFG)", ours: true }
         ],
         teaserIds: ["01001", "01000"],
         hero: [

@@ -12,7 +12,7 @@
     {
       "id": "00",
       "file": "00_a_beautiful_coastal_beach_in_spring_waves_lapping_on_sand_ra.mp4",
-      "vbench_prompt": "A beautiful coastal beach in spring, waves lapping on sand, racking focus",
+      "vbench_prompt": "A beautiful coastal beach in spring, waves lapping on sand, racking focus.",
       "extended_prompt": "A beautiful coastal beach during springtime, where gentle waves lap against the soft golden sand. The scene transitions smoothly from a clear blue ocean to the vibrant green foliage of palm trees on the shore, creating a captivating rack focusing effect. The sun casts a warm glow, illuminating the serene waters and casting dappled shadows through the trees. The air is filled with the sounds of seagulls and the rhythmic crashing of waves. The background showcases rolling hills covered in lush vegetation, adding depth to the picturesque landscape. Wide shot capturing the expansive beauty of the coastline.",
       "source_mp4": "A beautiful coastal beach in spring, waves lapping on sand, racking focus-0.mp4",
       "methods": [
@@ -26,7 +26,7 @@
     {
       "id": "01",
       "file": "01_a_bicycle_accelerating_to_gain_speed.mp4",
-      "vbench_prompt": "a bicycle accelerating to gain speed",
+      "vbench_prompt": "A bicycle accelerating to gain speed.",
       "extended_prompt": "A bicycle accelerating to gain speed, captured in a smooth time-lapse sequence. The bicycle is a classic red road bike with sleek aerodynamic handlebars and reflective wheels. The rider, a focused individual in cycling gear, leans forward, pedaling vigorously. The background shows a winding asphalt road leading into a forest, with trees and bushes blurring past as the bike speeds up. The camera starts from a mid-shot and gradually zooms in to focus on the rider's determined face and the spinning wheels, emphasizing the acceleration.",
       "source_mp4": "a bicycle accelerating to gain speed-0.mp4",
       "methods": [
@@ -40,7 +40,7 @@
     {
       "id": "02",
       "file": "02_a_bird_soaring_gracefully_in_the_sky.mp4",
-      "vbench_prompt": "a bird soaring gracefully in the sky",
+      "vbench_prompt": "A bird soaring gracefully in the sky.",
       "extended_prompt": "A majestic bird soaring gracefully through the clear blue sky, its wings spread wide as it glides effortlessly on the thermal currents. The bird's feathers shimmer in the sunlight, creating a striking contrast against the bright blue backdrop. The scene is captured from a mid-shot perspective, focusing on the bird's elegant flight path. The camera remains static, allowing viewers to appreciate the bird's fluid movements and the serene beauty of the sky.",
       "source_mp4": "a bird soaring gracefully in the sky-0.mp4",
       "methods": [
@@ -68,7 +68,7 @@
     {
       "id": "04",
       "file": "04_a_mars_rover_moving_on_mars.mp4",
-      "vbench_prompt": "A Mars rover moving on Mars",
+      "vbench_prompt": "A Mars rover moving on Mars.",
       "extended_prompt": "A realistic animation of a Mars rover navigating across the rugged Martian terrain. The rover is equipped with solar panels, antennas, and various scientific instruments. It moves slowly and steadily over large boulders and fine red dust, leaving tire tracks behind. The landscape is dotted with craters, rocky outcrops, and barren plains under a pale orange sky. The camera follows the rover from a mid-shot perspective as it continues its exploration mission. Static scene, focusing on the rover's movement and interaction with the environment.",
       "source_mp4": "A Mars rover moving on Mars-0.mp4",
       "methods": [
@@ -82,7 +82,7 @@
     {
       "id": "05",
       "file": "05_a_motorcycle_cruising_along_a_coastal_highway.mp4",
-      "vbench_prompt": "a motorcycle cruising along a coastal highway",
+      "vbench_prompt": "A motorcycle cruising along a coastal highway.",
       "extended_prompt": "A sleek black motorcycle cruising along a scenic coastal highway during sunset. The motorcycle has a polished chrome finish and tinted windows on the helmet. The rider, wearing a black leather jacket and jeans, has their hands firmly on the handlebars and is leaning slightly forward, maintaining a steady posture. Waves crash against the rocky shoreline on one side of the highway, while lush green hills roll into the distance on the other. The sky is painted with vibrant hues of orange and pink, casting a warm glow over the entire scene. The camera follows the motorcycle from behind, capturing the wind-swept road and the dramatic coastal landscape in a wide shot.",
       "source_mp4": "a motorcycle cruising along a coastal highway-0.mp4",
       "methods": [
@@ -96,7 +96,7 @@
     {
       "id": "06",
       "file": "06_a_panda_drinking_coffee_in_a_cafe_in_paris_pixel_art.mp4",
-      "vbench_prompt": "A panda drinking coffee in a cafe in Paris, pixel art",
+      "vbench_prompt": "A panda drinking coffee in a cafe in Paris, pixel art.",
       "extended_prompt": "Pixel art style, a cartoon panda sitting at a small table in a cozy Parisian café, drinking coffee. The panda is wearing a casual outfit consisting of a green hoodie and jeans, with a friendly and relaxed expression. The café interior is decorated with rustic wooden furniture, soft lighting, and vintage posters on the walls. In the background, there are other patrons enjoying their meals. The panda holds a steaming cup of coffee with both hands, sipping gently. The scene captures the charm of a quaint Parisian café, with the Eiffel Tower visible through the café window in the distance. Medium shot, static scene.",
       "source_mp4": "A panda drinking coffee in a cafe in Paris, pixel art-0.mp4",
       "methods": [
@@ -110,7 +110,7 @@
     {
       "id": "07",
       "file": "07_a_panda_playing_on_a_swing_set.mp4",
-      "vbench_prompt": "A panda playing on a swing set",
+      "vbench_prompt": "A panda playing on a swing set.",
       "extended_prompt": "A cute and playful panda bear swinging back and forth on a traditional swing set in a lush bamboo forest. The panda has black patches around its eyes and on its ears, giving it an endearing and curious expression. It is holding onto the chains of the swing with both front paws while its hind legs dangle freely. The bamboo trees sway gently in the breeze, and the sunlight filters through the leaves, casting a soft glow over the scene. The panda giggles as it swings higher, enjoying the fun. Mid-shot capturing the panda mid-swing, with a slight tilt upwards to show the surrounding forest.",
       "source_mp4": "A panda playing on a swing set-0.mp4",
       "methods": [
@@ -124,7 +124,7 @@
     {
       "id": "08",
       "file": "08_a_person_and_a_sink.mp4",
-      "vbench_prompt": "a person and a sink",
+      "vbench_prompt": "A person and a sink.",
       "extended_prompt": "A realistic, detailed scene featuring a person standing next to a kitchen sink. The person has tousled brown hair and is wearing a casual, white apron over a blue shirt and jeans. They are leaning slightly towards the sink, reaching for a sponge to clean a dish. The sink is modern with chrome fixtures and a stainless steel basin. Water droplets cling to the sides of the basin and the faucet. The background shows a clutter-free kitchen countertop with a few dishes and a dish rack. The lighting is soft and natural, casting gentle shadows. Medium close-up shot, static camera.",
       "source_mp4": "a person and a sink-0.mp4",
       "methods": [
@@ -138,7 +138,7 @@
     {
       "id": "09",
       "file": "09_a_person_is_filling_eyebrows.mp4",
-      "vbench_prompt": "A person is filling eyebrows",
+      "vbench_prompt": "A person is filling eyebrows.",
       "extended_prompt": "A close-up of a person getting their eyebrows filled in a beauty salon. The person is sitting comfortably in a chair with a mirror in front of them, their face tilted upwards towards the beautician who is carefully applying makeup to fill in and shape the eyebrows. The person has a calm expression, and the focus is on the detailed work being done on their eyebrows. The scene includes subtle lighting highlighting the area of work, and the beautician’s hand and tools can be seen in the frame. The background shows parts of the salon, including shelves with beauty products and a professional aesthetic. The scene emphasizes the precise and gentle motions of the beautician's hands as they work.",
       "source_mp4": "A person is filling eyebrows-0.mp4",
       "methods": [
@@ -152,7 +152,7 @@
     {
       "id": "10",
       "file": "10_a_person_is_laughing.mp4",
-      "vbench_prompt": "A person is laughing",
+      "vbench_prompt": "A person is laughing.",
       "extended_prompt": "A joyful person is laughing heartily, with a broad smile and crinkled eyes, conveying pure happiness. They are standing upright with arms spread wide, as if embracing the world around them. The scene is set outdoors in a sunny park, surrounded by lush greenery and blooming flowers. The background includes a clear blue sky with fluffy clouds, adding to the cheerful atmosphere. Medium shot capturing the full body of the person, focusing on their animated facial expressions and gestures.",
       "source_mp4": "A person is laughing-0.mp4",
       "methods": [
@@ -166,7 +166,7 @@
     {
       "id": "11",
       "file": "11_a_person_is_motorcycling.mp4",
-      "vbench_prompt": "A person is motorcycling",
+      "vbench_prompt": "A person is motorcycling.",
       "extended_prompt": "A dynamic close-up shot of a young adult riding a sleek black motorcycle on an open road. The rider is wearing a black leather jacket, dark sunglasses, and a helmet, with their hand gripping the handlebars tightly. The motorcycle's engine roars as it speeds along, with the wind blowing through the rider's hair. The background shows a scenic route with rolling hills and a clear blue sky. The camera follows the motorcycle from behind, capturing the speed and thrill of the ride. The scene conveys a sense of freedom and adventure.",
       "source_mp4": "A person is motorcycling-0.mp4",
       "methods": [
@@ -180,7 +180,7 @@
     {
       "id": "12",
       "file": "12_a_person_is_playing_piano.mp4",
-      "vbench_prompt": "A person is playing piano",
+      "vbench_prompt": "A person is playing piano.",
       "extended_prompt": "A close-up medium shot of a person playing the piano in a cozy living room. The person has curly brown hair and wears a casual sweater. They sit comfortably at the piano bench, fingers gracefully moving across the keys as they play a soft melody. The lighting is warm and gentle, casting soft shadows on the wooden floor and walls. The background includes a fireplace and bookshelves filled with books, adding to the homey atmosphere. The camera remains static, capturing the fluid motion of the pianist's hands and their focused expression.",
       "source_mp4": "A person is playing piano-0.mp4",
       "methods": [
@@ -208,7 +208,7 @@
     {
       "id": "14",
       "file": "14_a_shark_swimming_in_clear_caribbean_ocean.mp4",
-      "vbench_prompt": "A shark swimming in clear Caribbean ocean",
+      "vbench_prompt": "A shark swimming in clear Caribbean ocean.",
       "extended_prompt": "A large great white shark swimming gracefully through the crystal-clear waters of the Caribbean Ocean. The shark glides smoothly with its powerful tail fin moving side to side, creating gentle ripples in the water. Its sleek, streamlined body is covered in small, shiny scales, reflecting the sunlight that penetrates the ocean depths. Schools of colorful tropical fish swim around the shark, adding vibrant life to the underwater scene. The background showcases the sandy ocean floor dotted with coral reefs and patches of seaweed swaying gently with the current. The camera follows the shark from a medium underwater perspective, capturing the shark's fluid motions and the serene beauty of its surroundings.",
       "source_mp4": "A shark swimming in clear Caribbean ocean-0.mp4",
       "methods": [
@@ -222,7 +222,7 @@
     {
       "id": "15",
       "file": "15_a_zebra_taking_a_peaceful_walk.mp4",
-      "vbench_prompt": "a zebra taking a peaceful walk",
+      "vbench_prompt": "A zebra taking a peaceful walk.",
       "extended_prompt": "A serene African savanna landscape featuring a single zebra calmly walking through tall grass. The zebra has distinctive black and white stripes, with a gentle, relaxed expression as it moves gracefully. The environment is lush and vibrant, with scattered acacia trees and distant rolling hills visible in the background. The sun casts a warm glow over the scene, creating soft shadows and highlighting the zebra's fluid movement. Wide shot, capturing the expansive savanna and the zebra's peaceful stroll.",
       "source_mp4": "a zebra taking a peaceful walk-0.mp4",
       "methods": [
@@ -250,7 +250,7 @@
     {
       "id": "17",
       "file": "17_a_cat_wearing_sunglasses_at_a_pool.mp4",
-      "vbench_prompt": "A cat wearing sunglasses at a pool",
+      "vbench_prompt": "A cat wearing sunglasses at a pool.",
       "extended_prompt": "A playful domestic cat lounging by a sparkling swimming pool, wearing stylish black sunglasses perched atop its head. The cat has soft, fluffy fur with distinct stripes, and its tail curls gently behind it. The cat is lying down, paws tucked under its body, with a relaxed and content expression. The pool is surrounded by lush green grass and vibrant flowers, creating a serene and sunny outdoor setting. The water sparkles in the sunlight, and there is a gentle breeze rustling the leaves. Medium close-up shot focusing on the cat and the sunglasses.",
       "source_mp4": "A cat wearing sunglasses at a pool-0.mp4",
       "methods": [
@@ -264,7 +264,7 @@
     {
       "id": "18",
       "file": "18_a_cute_happy_corgi_playing_in_park_sunset.mp4",
-      "vbench_prompt": "A cute happy Corgi playing in park, sunset",
+      "vbench_prompt": "A cute happy Corgi playing in park, sunset.",
       "extended_prompt": "A cheerful and playful Corgi running and frolicking in a sunlit park during the golden hour of sunset. The Corgi has a fluffy tail and perky ears, wagging happily as it runs through the grassy field. The sky is painted with warm hues of orange and pink, casting a soft glow over the greenery. In the background, there are families enjoying their leisure time, children playing, and couples walking hand in hand. Medium shot capturing the joyful energy of the Corgi amidst the serene park atmosphere.",
       "source_mp4": "A cute happy Corgi playing in park, sunset-0.mp4",
       "methods": [
@@ -278,7 +278,7 @@
     {
       "id": "19",
       "file": "19_a_cute_happy_corgi_playing_in_park_sunset_by_hokusai_in_the_.mp4",
-      "vbench_prompt": "A cute happy Corgi playing in park, sunset by Hokusai, in the style of Ukiyo",
+      "vbench_prompt": "A cute happy Corgi playing in park, sunset by Hokusai, in the style of Ukiyo.",
       "extended_prompt": "A happy, playful Corgi running and frolicking in a park during sunset, inspired by Hokusai's style of Ukiyo-e. The Corgi has a wagging tail and joyful expression, bounding through the grass. The background showcases a serene landscape with cherry blossoms blooming, distant mountains, and a tranquil river. The sky is painted with vibrant hues of orange and pink, reflecting the beauty of a Japanese sunset. The composition follows the traditional Ukiyo-e aesthetic with bold outlines and flat colors. Medium shot capturing the lively energy of the Corgi amidst the picturesque scenery.",
       "source_mp4": "A cute happy Corgi playing in park, sunset by Hokusai, in the style of Ukiyo-0.mp4",
       "methods": [
@@ -306,7 +306,7 @@
     {
       "id": "21",
       "file": "21_a_person_drinking_coffee_in_a_cafe.mp4",
-      "vbench_prompt": "a person drinking coffee in a cafe",
+      "vbench_prompt": "A person drinking coffee in a cafe.",
       "extended_prompt": "A cozy, warm café setting with soft ambient lighting and wooden furnishings. A young adult, casually dressed in a sweater and jeans, sits at a small round table. They hold a steaming cup of coffee in their hand, taking a sip while looking pensively out the window. The café is moderately busy with other patrons engaged in conversations. The background showcases various coffee drinks and pastries displayed on a counter. The person’s expression is relaxed and content. Medium shot focusing on the person’s face and the coffee cup, capturing the intimate atmosphere of the café.",
       "source_mp4": "a person drinking coffee in a cafe-0.mp4",
       "methods": [
@@ -320,7 +320,7 @@
     {
       "id": "22",
       "file": "22_a_person_is_riding_a_bike.mp4",
-      "vbench_prompt": "A person is riding a bike",
+      "vbench_prompt": "A person is riding a bike.",
       "extended_prompt": "A person is cycling through a scenic park trail. The rider is wearing a helmet, casual clothes, and sunglasses, pedaling steadily. They are mid-action, leaning slightly forward, with one hand on the handlebars and the other hanging loosely. The environment around them includes lush green trees, blooming flowers, and a winding dirt path. The sun is shining brightly, casting dappled shadows through the leaves. The scene captures a close-up of the rider from a side angle, focusing on their determined expression and the motion of the bicycle wheels.",
       "source_mp4": "A person is riding a bike-0.mp4",
       "methods": [
@@ -334,7 +334,7 @@
     {
       "id": "23",
       "file": "23_a_person_is_sailing.mp4",
-      "vbench_prompt": "A person is sailing",
+      "vbench_prompt": "A person is sailing.",
       "extended_prompt": "A person is sailing across the ocean during sunset. The individual is at the helm of a traditional wooden sailboat, wearing a navy blue sailor's outfit with a striped shirt underneath. They have a determined look on their face, gazing intently at the horizon. The sailboat is gently moving through calm waters, with waves barely touching the sides of the vessel. In the background, the sun is setting, casting a warm orange and pink glow over the sea. The sky is filled with vibrant hues of red, orange, and purple, creating a serene and picturesque scene. Medium shot focusing on the person and the sailboat.",
       "source_mp4": "A person is sailing-0.mp4",
       "methods": [
