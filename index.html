@@ -1126,7 +1126,7 @@
     };
 
     const MEDIA_RELEASE_DELAY = 4000;
-    const MEDIA_READY_TIMEOUT = 15000;
+    const MEDIA_READY_TIMEOUT = 30000;
     const mediaReleaseTimers = new WeakMap();
     const mediaGenerations = new WeakMap();
     const galleryPrefetchedUrls = new Set();
@@ -1234,18 +1234,21 @@
     }
 
     function waitForVideo(video) {
-      if (video.readyState >= 3 || video.error) return Promise.resolve();
+      if (video.error) return Promise.resolve("error");
+      if (video.readyState >= 2) return Promise.resolve("ready");
       return new Promise((resolve) => {
         let timer = null;
-        const finish = () => {
-          video.removeEventListener("canplay", finish);
-          video.removeEventListener("error", finish);
+        const finish = (status) => {
+          video.removeEventListener("loadeddata", onReady);
+          video.removeEventListener("error", onError);
           if (timer !== null) window.clearTimeout(timer);
-          resolve();
+          resolve(status);
         };
-        video.addEventListener("canplay", finish, { once: true });
-        video.addEventListener("error", finish, { once: true });
-        timer = window.setTimeout(finish, MEDIA_READY_TIMEOUT);
+        const onReady = () => finish("ready");
+        const onError = () => finish("error");
+        video.addEventListener("loadeddata", onReady, { once: true });
+        video.addEventListener("error", onError, { once: true });
+        timer = window.setTimeout(() => finish("timeout"), MEDIA_READY_TIMEOUT);
       });
     }
 
@@ -1255,7 +1258,7 @@
       const videos = mediaVideos(group);
       if (!videos.length) return;
 
-      const alreadyReady = videos.every((video) => video.getAttribute("src") && video.readyState >= 3);
+      const alreadyReady = videos.every((video) => video.getAttribute("src") && video.readyState >= 2);
       if (alreadyReady) {
         videos.forEach(playVideo);
         setMediaState(group, "ready");
@@ -1269,10 +1272,10 @@
 
       // Starting muted videos makes iOS fetch actual frames instead of metadata only.
       videos.forEach(playVideo);
-      await Promise.all(videos.map(waitForVideo));
+      const readiness = await Promise.all(videos.map(waitForVideo));
       if (!group.isConnected || mediaGenerations.get(group) !== generation) return;
 
-      const failed = videos.some((video) => video.error || video.readyState < 3);
+      const failed = videos.some((video) => video.error) || readiness.includes("error");
       if (failed) {
         setMediaState(group, "error", "Unable to load every video.");
         return;
@@ -1297,12 +1300,17 @@
       clearMediaRelease(group);
       mediaGenerations.set(group, (mediaGenerations.get(group) || 0) + 1);
       const videos = mediaVideos(group);
-      videos.forEach((video) => video.pause());
+      const retainedVideos = [];
+      videos.forEach((video) => {
+        video.pause();
+        if (video.getAttribute("src") && video.readyState < 2) detachVideo(video);
+        else retainedVideos.push(video);
+      });
       setMediaState(group, "idle");
       if (group.closest("#gallery-list")) cancelGalleryPrefetch();
       const release = () => {
         mediaReleaseTimers.delete(group);
-        videos.forEach(detachVideo);
+        retainedVideos.forEach(detachVideo);
       };
       if (immediate) release();
       else mediaReleaseTimers.set(group, window.setTimeout(release, MEDIA_RELEASE_DELAY));
@@ -1328,11 +1336,12 @@
       state.observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const group = entry.target;
-          group.dataset.nearViewport = entry.isIntersecting ? "true" : "false";
-          if (entry.isIntersecting) startMediaGroup(group);
+          const visibleEnough = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+          group.dataset.nearViewport = visibleEnough ? "true" : "false";
+          if (visibleEnough) startMediaGroup(group);
           else stopMediaGroup(group);
         });
-      }, { rootMargin: "200px 0px", threshold: 0 });
+      }, { rootMargin: "0px", threshold: [0, 0.5] });
       observeMediaGroups();
     }
 
