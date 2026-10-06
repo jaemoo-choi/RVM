@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Scaling Reinforcement Learning for Diffusion Models via Velocity Matching</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <script defer src="vendor/katex/katex.min.js"></script>
   <style>
     :root {
       --bg: #f7f7f4;
@@ -1021,10 +1021,20 @@
           <summary>SkyReels-I2V sampling details</summary>
           <p>Image-to-video. 53 frames, 400x640, 16-step ODE, cfg=1.0, VBench-I2V (vbench_i2v_a14b). The headline is the prompt the model was conditioned on, i.e., these runs used the original short prompts. The expandable rewrite comes from a separate eval_a14b_extended run and was not used for these clips. No CFG=5 baseline was collected for this model.</p>
         </details>
+        <details class="sampling-details" data-dataset="skyreels_high" hidden>
+          <summary>SkyReels-I2V (high resolution, 544x960) sampling details</summary>
+          <p>Image-to-video. 53 frames, 544x960, 15 fps, VBench-I2V. Base (w/o CFG) and RVM use a 16-step DPM-2 ODE with cfg=1.0; Base + CFG uses cfg=6 with the official negative prompt. The headline is the original short prompt the model was conditioned on.</p>
+        </details>
+        <details class="sampling-details" data-dataset="wan22" hidden>
+          <summary>Wan2.2-T2V sampling details</summary>
+          <p>Text-to-video, Wan2.2-T2V-A14B, VBench suite. Base (w/o CFG) uses a 16-step DPM-2 ODE with cfg=1.0. The headline is the short VBench suite prompt; expand "extended prompt" for the self_forcing_extended caption the model was actually conditioned on.</p>
+        </details>
       </div>
       <div class="gallery-tools">
         <button class="tab" data-dataset="wan21" aria-pressed="true">Wan2.1-T2V</button>
         <button class="tab" data-dataset="skyreels" aria-pressed="false">SkyReels-I2V</button>
+        <button class="tab" data-dataset="skyreels_high" aria-pressed="false">SkyReels-I2V (high resolution, 544x960)</button>
+        <button class="tab" data-dataset="wan22" aria-pressed="false">Wan2.2-T2V</button>
         <span class="count" id="count"></span>
       </div>
       <div class="gallery-carousel">
@@ -1106,6 +1116,35 @@
         hero: [
           { id: "00885", method: "epg_bump", label: "SkyReels-I2V / RVM" }
         ]
+      },
+      skyreels_high: {
+        folder: "skyreels_high",
+        title: "SkyReels-I2V (544x960)",
+        note: "High-resolution image-to-video generation with base, CFG baseline, and RVM.",
+        promptKey: "prompt",
+        detailKey: "extended_prompt",
+        detailLabel: "extended prompt",
+        methods: [
+          { key: "base_wo_cfg", label: "Base (w/o CFG)" },
+          { key: "base_w_cfg", label: "Base + CFG" },
+          { key: "rvm_ours", label: "RVM (Ours, w/o CFG)", ours: true }
+        ],
+        teaserIds: [],
+        hero: []
+      },
+      wan22: {
+        folder: "wan2.2",
+        title: "Wan2.2-T2V-A14B",
+        note: "Text-to-video generation with base and RVM.",
+        promptKey: "vbench_prompt",
+        detailKey: "extended_prompt",
+        detailLabel: "extended prompt",
+        methods: [
+          { key: "base_wo_cfg", label: "Base (w/o CFG)" },
+          { key: "rvm_ours", label: "RVM (Ours, w/o CFG)", ours: true }
+        ],
+        teaserIds: [],
+        hero: []
       }
     };
 

@@ -1,0 +1,79 @@
+{
+  "model": "wan2_2_t2v_a14b",
+  "methods": [
+    "base_wo_cfg",
+    "rvm_ours"
+  ],
+  "prompts": [
+    {
+      "id": "06",
+      "file": "06_a_giraffe_bending_down_to_drink_water_fr.mp4",
+      "vbench_prompt": "a giraffe bending down to drink water from a river",
+      "extended_prompt": "A serene African savanna scene with tall grasses and scattered trees. A tall giraffe, with distinctive brown spots on its creamy white coat, bends its long neck gracefully to drink from a calm river. The giraffe's gaze is focused intently on the water as it lowers its head, revealing its long eyelashes and gentle expression. The river reflects the golden hues of the late afternoon sun, casting a warm glow over the scene. The background shows the vast expanse of the savanna with distant hills. The video is a medium close-up, capturing the giraffe's elegant movement and the tranquil environment.",
+      "methods": [
+        "base_wo_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "21",
+      "file": "21_a_truck_turning_a_corner.mp4",
+      "vbench_prompt": "a truck turning a corner",
+      "extended_prompt": "A large semi-truck turning a corner on a busy city street during rush hour. The truck has a typical design with multiple mirrors, a distinctive grill, and large tires. It slowly navigates the turn, signaling with its blinker. The truck driver sits attentively at the wheel, looking focused. Surrounding vehicles and pedestrians move around the truck, maintaining their own paths. The environment includes tall buildings and road signs. The scene captures the truck from a mid-shot perspective, emphasizing the truck's size and the dynamics of the turn.",
+      "methods": [
+        "base_wo_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "22",
+      "file": "22_a_bird_soaring_gracefully_in_the_sky.mp4",
+      "vbench_prompt": "a bird soaring gracefully in the sky",
+      "extended_prompt": "A majestic bird soaring gracefully through the clear blue sky, its wings spread wide as it glides effortlessly on the thermal currents. The bird's feathers shimmer in the sunlight, creating a striking contrast against the bright blue backdrop. The scene is captured from a mid-shot perspective, focusing on the bird's elegant flight path. The camera remains static, allowing viewers to appreciate the bird's fluid movements and the serene beauty of the sky.",
+      "methods": [
+        "base_wo_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "37",
+      "file": "37_a_motorcycle_turning_a_corner.mp4",
+      "vbench_prompt": "a motorcycle turning a corner",
+      "extended_prompt": "A motorcycle turning a corner on a narrow urban street at night. The bike is black with sleek, aerodynamic features, and the rider is wearing a black leather jacket, jeans, and a helmet. The rider leans into the turn, with one hand gripping the handlebars and the other clutching the side of the motorcycle. The streetlights cast a soft glow, illuminating the wet asphalt and creating reflections. In the background, there are dimly lit buildings and parked cars. The scene is captured from a mid-shot perspective, focusing on the motorcycle and the rider as they navigate the corner.",
+      "methods": [
+        "base_wo_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "44",
+      "file": "44_a_car_turning_a_corner.mp4",
+      "vbench_prompt": "a car turning a corner",
+      "extended_prompt": "A sleek, modern sedan driving down a city street, approaching a sharp corner. As the car begins to turn, it smoothly navigates the bend, with the driver maintaining control. The exterior of the vehicle is polished and gleaming, reflecting the surrounding urban environment. In the background, there are tall buildings and street signs, adding to the bustling atmosphere. The scene is captured from a dynamic camera angle that follows the car as it turns, providing a sense of movement and speed. Wide shot, focusing on the car as it makes the turn.",
+      "methods": [
+        "base_wo_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "55",
+      "file": "55_a_cute_happy_corgi_playing_in_park_sunse.mp4",
+      "vbench_prompt": "A cute happy Corgi playing in park, sunset by Hokusai, in the style of Ukiyo",
+      "extended_prompt": "A happy, playful Corgi running and frolicking in a park during sunset, inspired by Hokusai's style of Ukiyo-e. The Corgi has a wagging tail and joyful expression, bounding through the grass. The background showcases a serene landscape with cherry blossoms blooming, distant mountains, and a tranquil river. The sky is painted with vibrant hues of orange and pink, reflecting the beauty of a Japanese sunset. The composition follows the traditional Ukiyo-e aesthetic with bold outlines and flat colors. Medium shot capturing the lively energy of the Corgi amidst the picturesque scenery.",
+      "methods": [
+        "base_wo_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "59",
+      "file": "59_gwen_stacy_reading_a_book_pixel_art.mp4",
+      "vbench_prompt": "Gwen Stacy reading a book, pixel art",
+      "extended_prompt": "Pixel art style, Gwen Stacy is sitting comfortably in a cozy room, reading an open book. She has long red hair tied up in a ponytail, green eyes, and is dressed in a casual outfit consisting of a white t-shirt and blue jeans. Gwen’s expression is focused and calm as she turns the pages of the book. The room around her is simply furnished with a wooden desk and a small lamp. The background is a soft pastel color, adding a gentle ambiance to the scene. Medium close-up shot focusing on Gwen’s face and the book she is holding.",
+      "methods": [
+        "base_wo_cfg",
+        "rvm_ours"
+      ]
+    }
+  ]
+}

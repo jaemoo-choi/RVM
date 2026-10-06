@@ -1,0 +1,219 @@
+{
+  "model": "skyreels_i2v_544x960",
+  "methods": [
+    "base_wo_cfg",
+    "base_w_cfg",
+    "rvm_ours"
+  ],
+  "prompts": [
+    {
+      "id": "01",
+      "file": "01_a_panda_bear_is_eating_a_piece_of_bamboo.mp4",
+      "prompt": "a panda bear is eating a piece of bamboo",
+      "ref_image": "refs/01.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "07",
+      "file": "07_a_woman_wearing_a_hijab_reading_a_book_o.mp4",
+      "prompt": "a woman wearing a hijab reading a book on the beach",
+      "ref_image": "refs/07.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "11",
+      "file": "11_a_white_car_is_swiftly_driving_on_a_dirt.mp4",
+      "prompt": "a white car is swiftly driving on a dirt road near a bush, kicking up dust",
+      "ref_image": "refs/11.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "12",
+      "file": "12_a_monkey_is_holding_a_banana_in_its_mout.mp4",
+      "prompt": "a monkey is holding a banana in its mouth",
+      "ref_image": "refs/12.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "18",
+      "file": "18_a_basket_of_french_fries_in_a_fryer.mp4",
+      "prompt": "a basket of french fries in a fryer",
+      "ref_image": "refs/18.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "21",
+      "file": "21_a_blue_fishing_boat_is_navigating_in_the.mp4",
+      "prompt": "a blue fishing boat is navigating in the ocean next to a cruise ship",
+      "ref_image": "refs/21.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "27",
+      "file": "27_a_person_is_cooking_meat_on_a_grill_with.mp4",
+      "prompt": "a person is cooking meat on a grill with flames",
+      "ref_image": "refs/27.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "30",
+      "file": "30_fried_onion_rings_in_a_basket.mp4",
+      "prompt": "fried onion rings in a basket",
+      "ref_image": "refs/30.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "41",
+      "file": "41_a_woman_in_a_kimono_holding_an_umbrella.mp4",
+      "prompt": "a woman in a kimono holding an umbrella",
+      "ref_image": "refs/41.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "45",
+      "file": "45_two_men_riding_bikes_down_a_road_near_a_.mp4",
+      "prompt": "two men riding bikes down a road near a forest",
+      "ref_image": "refs/45.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "47",
+      "file": "47_a_person_riding_a_motorcycle_down_a_road.mp4",
+      "prompt": "a person riding a motorcycle down a road",
+      "ref_image": "refs/47.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "48",
+      "file": "48_a_little_crab_scurried_on_the_sandy_beac.mp4",
+      "prompt": "a little crab scurried on the sandy beach",
+      "ref_image": "refs/48.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "50",
+      "file": "50_a_highland_cow_with_long_horns_standing_.mp4",
+      "prompt": "a highland cow with long horns standing in a field",
+      "ref_image": "refs/50.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "53",
+      "file": "53_a_young_boy_leaning_on_a_wooden_pole.mp4",
+      "prompt": "a young boy leaning on a wooden pole",
+      "ref_image": "refs/53.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "56",
+      "file": "56_a_person_holding_a_sparkler_in_front_of_.mp4",
+      "prompt": "a person holding a sparkler in front of a sunset",
+      "ref_image": "refs/56.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "57",
+      "file": "57_a_person_holding_a_sparkler_in_their_han.mp4",
+      "prompt": "a person holding a sparkler in their hand",
+      "ref_image": "refs/57.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "63",
+      "file": "63_a_living_room_filled_with_lots_of_books_.mp4",
+      "prompt": "a living room filled with lots of books on a wall",
+      "ref_image": "refs/63.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "66",
+      "file": "66_the_golden_gate_bridge_in_san_franscisco.mp4",
+      "prompt": "the golden gate bridge in san franscisco is lit up by the setting sun",
+      "ref_image": "refs/66.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    },
+    {
+      "id": "69",
+      "file": "69_a_monastery_sits_on_top_of_a_cliff_in_bh.mp4",
+      "prompt": "a monastery sits on top of a cliff in bhutan",
+      "ref_image": "refs/69.jpg",
+      "methods": [
+        "base_wo_cfg",
+        "base_w_cfg",
+        "rvm_ours"
+      ]
+    }
+  ]
+}
