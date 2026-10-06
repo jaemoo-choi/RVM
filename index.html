@@ -1098,7 +1098,7 @@
         ],
         teaserIds: ["00", "14"],
         hero: [
-          { id: "01", method: "rvm_ours", label: "Wan2.1-T2V / RVM" }
+          { id: "11", method: "rvm_ours", label: "Wan2.1-T2V / RVM" }
         ]
       },
       skyreels: {
@@ -1113,9 +1113,7 @@
           { key: "epg_bump", label: "RVM (Ours, w/o CFG)", ours: true }
         ],
         teaserIds: ["01000"],
-        hero: [
-          { id: "00885", method: "epg_bump", label: "SkyReels-I2V / RVM" }
-        ]
+        hero: []
       },
       skyreels_high: {
         folder: "skyreels_high",
@@ -1130,7 +1128,9 @@
           { key: "rvm_ours", label: "RVM (Ours, w/o CFG)", ours: true }
         ],
         teaserIds: ["11", "45"],
-        hero: []
+        hero: [
+          { id: "45", method: "rvm_ours", label: "SkyReels-I2V (544x960) / RVM" }
+        ]
       },
       wan22: {
         folder: "wan2.2",
@@ -1418,7 +1418,8 @@
     function renderHeroVideos() {
       const heroItems = [
         ...DATASETS.wan21.hero.map((entry) => ({ dataset: "wan21", ...entry })),
-        ...DATASETS.skyreels.hero.map((entry) => ({ dataset: "skyreels", ...entry }))
+        ...DATASETS.skyreels.hero.map((entry) => ({ dataset: "skyreels", ...entry })),
+        ...DATASETS.skyreels_high.hero.map((entry) => ({ dataset: "skyreels_high", ...entry }))
       ];
       document.getElementById("hero-videos").innerHTML = `
         <div class="media-status" role="status" aria-live="polite">Loading videos...</div>
