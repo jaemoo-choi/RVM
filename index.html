@@ -1436,7 +1436,7 @@
     }
 
     function renderTeasers() {
-      const html = Object.keys(DATASETS).map((datasetKey) => {
+      const html = ["wan21", "skyreels_high", "skyreels", "wan22"].map((datasetKey) => {
         const cfg = DATASETS[datasetKey];
         return cfg.teaserIds.map((id) => makeSample(datasetKey, getItem(datasetKey, id), true)).join("");
       }).join("");
