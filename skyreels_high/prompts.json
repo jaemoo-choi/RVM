@@ -117,17 +117,6 @@
       ]
     },
     {
-      "id": "47",
-      "file": "47_a_person_riding_a_motorcycle_down_a_road.mp4",
-      "prompt": "a person riding a motorcycle down a road",
-      "ref_image": "refs/47.jpg",
-      "methods": [
-        "base_wo_cfg",
-        "base_w_cfg",
-        "rvm_ours"
-      ]
-    },
-    {
       "id": "48",
       "file": "48_a_little_crab_scurried_on_the_sandy_beac.mp4",
       "prompt": "a little crab scurried on the sandy beach",
