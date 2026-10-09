@@ -210,6 +210,21 @@
       cursor: default;
     }
 
+    .teaser-video {
+      margin: 30px 0 0;
+    }
+
+    .teaser-video video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
     .hero-video-band {
       position: relative;
       margin-top: 34px;
@@ -920,6 +935,9 @@
       <a class="button" href="">Code&nbsp;<span class="button-muted">(coming soon)</span></a>
       <a class="button" href="#citation">BibTeX</a>
     </div>
+    <figure class="teaser-video">
+      <video src="teaser/rvm_teaser.mp4" poster="teaser/rvm_teaser_poster.jpg" controls autoplay muted loop playsinline preload="metadata" aria-label="RVM teaser video"></video>
+    </figure>
     <div class="hero-video-band" id="hero-videos" aria-label="Representative generated videos">
       <div class="load-state">Loading representative videos...</div>
     </div>
@@ -962,11 +980,11 @@
         <h3 class="comparison-title">Relation to Existing Velocity Objectives</h3>
         <div class="method-grid">
           <div class="method-card objective-card ram">
-            <h3>RAM <a class="objective-ref" href="#ref-ram">[1]</a></h3>
+            <h3>RAM <a class="objective-ref" href="#ref-ram">[2]</a></h3>
             <p>RAM shapes a detached reward target. With the frozen reference as anchor and unit anchor strength, its velocity-field update matches RVM.</p>
           </div>
           <div class="method-card objective-card nft">
-            <h3>DiffusionNFT <a class="objective-ref" href="#ref-nft">[2]</a></h3>
+            <h3>DiffusionNFT <a class="objective-ref" href="#ref-nft">[3]</a></h3>
             <p>DiffusionNFT contrasts positive and negative EMA-anchored branches. Its objective is an EMA-anchored RVM up to constants, with signed reward weight <span class="inline-math" data-katex="2r_{\mathrm{nft}}-1">2r_nft - 1</span>.</p>
           </div>
           <div class="method-card objective-card rvm">
@@ -1068,6 +1086,11 @@
         <h2>References</h2>
       </div>
       <ol class="reference-list">
+        <li id="ref-rethinking">
+          <span class="reference-title">Rethinking the Design Space of Reinforcement Learning for Diffusion Models: On the Importance of Likelihood Estimation Beyond Loss Design.</span>
+          <span class="reference-meta"> Jaemoo Choi, Yuchen Zhu, Wei Guo, Petr Molodyk, Bo Yuan, Jinbin Bai, Yi Xin, Molei Tao, and Yongxin Chen. arXiv:2602.04663, 2026.</span>
+          <a href="https://arxiv.org/abs/2602.04663" target="_blank" rel="noopener">arXiv</a>
+        </li>
         <li id="ref-ram">
           <span class="reference-title">Reinforce Adjoint Matching: Scaling RL Post-Training of Diffusion and Flow-Matching Models.</span>
           <span class="reference-meta"> Andreas Bergmeister, Stefanie Jegelka, Nikolas N&uuml;sken, Carles Domingo-Enrich, and Jakiw Pidstrigach. arXiv:2605.10759, 2026.</span>
