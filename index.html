@@ -1458,12 +1458,19 @@
       }).join("");
     }
 
+    // Shown first in "Representative Comparisons", in this order.
+    const FEATURED_TEASERS = [["wan21", "11"], ["skyreels_high", "45"]];
+
     function renderTeasers() {
-      const html = ["wan21", "skyreels_high", "skyreels", "wan22"].map((datasetKey) => {
+      const isFeatured = (datasetKey, id) => FEATURED_TEASERS.some(([key, fid]) => key === datasetKey && fid === id);
+      const featured = FEATURED_TEASERS.map(([datasetKey, id]) => makeSample(datasetKey, getItem(datasetKey, id), true)).join("");
+      const rest = ["wan21", "skyreels_high", "skyreels", "wan22"].map((datasetKey) => {
         const cfg = DATASETS[datasetKey];
-        return cfg.teaserIds.map((id) => makeSample(datasetKey, getItem(datasetKey, id), true)).join("");
+        return cfg.teaserIds
+          .filter((id) => !isFeatured(datasetKey, id))
+          .map((id) => makeSample(datasetKey, getItem(datasetKey, id), true)).join("");
       }).join("");
-      document.getElementById("teaser-grid").innerHTML = html;
+      document.getElementById("teaser-grid").innerHTML = featured + rest;
     }
 
     function updateSamplingNotes() {
