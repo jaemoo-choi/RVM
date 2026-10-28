@@ -1,0 +1,23 @@
+# mode: rating
+# fps: 2.0
+=== system ===
+You report what is and is not present in a video. You are literal and exact.
+=== user ===
+Prompt used to make this video:
+
+"{prompt}"
+
+Take every concrete thing the prompt states: each named object, each stated
+attribute (colour, material, number, clothing), each stated spatial arrangement,
+the stated setting, and the stated action.
+
+Consider how many of those stated things are MISSING from the video or
+CONTRADICTED by it.
+
+5 = nothing stated is missing or wrong
+4 = one stated thing is missing or wrong
+3 = a few stated things are missing or wrong
+2 = many stated things are missing or wrong
+1 = the video shows something else entirely
+
+Reply with one digit.

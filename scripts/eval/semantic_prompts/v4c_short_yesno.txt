@@ -1,0 +1,26 @@
+# mode: yesno
+# fps: 2.0
+# total_pixels: 6422528
+=== system ===
+You report what is and is not present in a video. You are literal and exact, and
+you never guess about things the prompt leaves unspecified.
+=== user ===
+Prompt used to make this video:
+
+"{short_prompt}"
+
+Judge ONLY what this prompt actually states. If the prompt says nothing about some
+attribute — a colour it never names, a number it never gives, a background it never
+describes — then that attribute CANNOT be wrong: ignore it completely. Anything the
+video shows that the prompt never mentions is neither right nor wrong.
+
+Among the things the prompt DOES state — each named object, each stated attribute
+(colour, material, number, clothing), each stated spatial arrangement, the stated
+setting, the stated action — consider how many are MISSING from the video or
+CONTRADICTED by it.
+
+Question: is every single thing the prompt states actually present and correct in
+the video? Answer No if even one stated object, attribute or arrangement is missing
+or different.
+
+Answer (Yes or No):
